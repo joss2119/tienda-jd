@@ -3,6 +3,7 @@ package es.iesclaradelrey.da2d1a.tiendajd.common.repositories;
 import es.iesclaradelrey.da2d1a.tiendajd.common.entities.Categoria;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +15,7 @@ public class CategoriaRepositoryImpl implements CategoriaRepository {
 
     @Override
     public List<Categoria> findAll() {
-        return (List<Categoria>) mapaCategoria.values();
+        return new ArrayList<>(mapaCategoria.values());
     }
 
     @Override
@@ -25,5 +26,6 @@ public class CategoriaRepositoryImpl implements CategoriaRepository {
     @Override
     public Categoria save(Categoria categoria) {
         mapaCategoria.put(categoria.getId(), categoria);
+        return categoria;
     }
 }

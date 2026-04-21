@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lista de Categorias</title>
+</head>
+<body>
+    <h1>Lista de Categorias</h1>
+    <ul th:each="categoorias: ${listaCategorias}">
+        <li th:text="${categoorias.getNombre()}"></li>
+        <li th:text="${categoorias.getDescripcion()}"></li>
+        <li th:if="${categoorias.getImagen() == null}">
+            <img th:src="@{/imagenes/categorias/Imagen_Generica.webp}" alt="Imagen no disponible">
+        </li>
+    </ul>
+</body>
+</html>
