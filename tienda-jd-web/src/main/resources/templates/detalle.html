@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Detalles</title>
+</head>
+<body>
+    <main>
+        <section>
+            <h2 th:text="${categoriaDetallada.getNombre()}"></h2>
+            <article th:text="${categoriaDetallada.getDescripcion()}"></article>
+            <div th:if="${categoriaDetallada.getImagen() == null}">
+                <img th:src="@{/imagenes/categorias/Imagen_Generica.webp}" alt="Imagen no disponible">
+            </div>
+        </section>
+    </main>
+    <footer>
+        <a href="/sobre-nosotros.html">Sobre Nosotros</a>
+    </footer>
+</body>
+</html>

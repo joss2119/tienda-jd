@@ -7,11 +7,14 @@
 </head>
 <body>
     <h1>Lista de Categorias</h1>
-    <ul th:each="categoorias: ${listaCategorias}">
-        <li th:text="${categoorias.getNombre()}"></li>
-        <li th:text="${categoorias.getDescripcion()}"></li>
-        <li th:if="${categoorias.getImagen() == null}">
+    <ul th:each="categoria : ${listaCategorias}">
+        <li th:text="${categoria.getNombre()}"></li>
+        <li th:text="${categoria.getDescripcion()}"></li>
+        <li th:if="${categoria.getImagen() == null}">
             <img th:src="@{/imagenes/categorias/Imagen_Generica.webp}" alt="Imagen no disponible">
+        </li>
+        <li>
+            <a th:href="@{/categorias/{id}(id=${categoria.id})}">Ver detalles</a>
         </li>
     </ul>
     <footer>
