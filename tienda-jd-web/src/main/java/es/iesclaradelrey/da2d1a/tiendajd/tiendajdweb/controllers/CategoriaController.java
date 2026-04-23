@@ -31,6 +31,6 @@ public class CategoriaController {
             Model model,
             @PathVariable Long id){
         model.addAttribute("categoriaDetallada", categoriaService.findById(id));
-        return "categoria";
+        return "detalle";
     }
 }
