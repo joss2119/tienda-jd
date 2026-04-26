@@ -32,7 +32,6 @@ public class ProductoRepositoryImpl implements ProductoRepository {
 
     @Override
     public List<Producto> findByCategoriaId(Long categoriaId) {
-        // Filtramos usando Streams de Java para devolver solo los de esa categoría
         return mapaProducto.values().stream()
                 .filter(p -> p.getCategoria() != null && p.getCategoria().getId().equals(categoriaId))
                 .collect(Collectors.toList());

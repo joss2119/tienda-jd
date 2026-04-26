@@ -8,6 +8,5 @@ public interface ProductoRepository {
     Producto findById(Long id);
     Producto save(Producto producto);
 
-    // Método para buscar los productos de una categoría concreta
     List<Producto> findByCategoriaId(Long categoriaId);
 }

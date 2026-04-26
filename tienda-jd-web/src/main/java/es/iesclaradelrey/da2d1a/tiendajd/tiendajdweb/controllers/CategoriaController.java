@@ -30,10 +30,8 @@ public class CategoriaController {
 
     @GetMapping("/{id}")
     public String categoria(Model model, @PathVariable Long id){
-        // Pasamos la categoría
         model.addAttribute("categoriaDetallada", categoriaService.findById(id));
 
-        // ¡NUEVO! Pasamos la lista de productos filtrada por el ID de esta categoría
         model.addAttribute("listaProductos", productoService.findByCategoriaId(id));
 
         return "detalle";
