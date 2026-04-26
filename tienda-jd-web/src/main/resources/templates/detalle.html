@@ -6,17 +6,36 @@
     <title>Detalles</title>
 </head>
 <body>
-    <main>
-        <section>
-            <h2 th:text="${categoriaDetallada.getNombre()}"></h2>
-            <article th:text="${categoriaDetallada.getDescripcion()}"></article>
-            <div th:if="${categoriaDetallada.getImagen() == null}">
-                <img th:src="@{/imagenes/categorias/Imagen_Generica.webp}" alt="Imagen no disponible">
-            </div>
-        </section>
-    </main>
-    <footer>
-        <a href="/sobre-nosotros.html">Sobre Nosotros</a>
-    </footer>
+<main>
+    <section>
+        <h2 th:text="${categoriaDetallada.getNombre()}"></h2>
+        <article th:text="${categoriaDetallada.getDescripcion()}"></article>
+        <div th:if="${categoriaDetallada.getImagen() == null}">
+            <img th:src="@{/imagenes/categorias/Imagen_Generica.webp}" alt="Imagen no disponible" style="max-width: 200px;">
+        </div>
+
+        <hr style="margin: 20px 0;"> <div class="catalogo-productos">
+        <h3>Productos en esta categoría</h3>
+
+        <div th:if="${#lists.isEmpty(listaProductos)}">
+            <p>Aún no tenemos productos disponibles para esta categoría.</p>
+        </div>
+
+        <div th:unless="${#lists.isEmpty(listaProductos)}">
+            <ul>
+                <li th:each="producto : ${listaProductos}" style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                    <h4 th:text="${producto.nombre}">Nombre del Producto</h4>
+                    <p th:text="${producto.descripcion}">Descripción del producto...</p>
+                    <p><strong>Precio:</strong> <span th:text="${producto.precio}">0.00</span> €</p>
+                    <p><strong>Stock disponible:</strong> <span th:text="${producto.stock}">0</span> unidades</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </section>
+</main>
+<footer>
+    <a href="/sobre-nosotros.html">Sobre Nosotros</a>
+</footer>
 </body>
 </html>
