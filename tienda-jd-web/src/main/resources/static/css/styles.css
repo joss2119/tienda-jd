@@ -1,0 +1,91 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(rgba(15, 15, 15, 0.85), rgba(15, 15, 15, 0.85)),
+    url('/imagenes/fondo.webp') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: rgba(30, 30, 30, 0.9);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+header, footer {
+    text-align: center;
+    padding: 20px 0;
+}
+
+footer {
+    margin-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+h1, h2, h3, h4 {
+    color: #d4af37;
+    font-weight: 600;
+}
+
+a {
+    color: #d4af37;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+hr {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+ul.lista-grid {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 20px;
+}
+
+.card {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
+}
+
+.card img {
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #d4af37;
+    color: #111;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.btn:hover {
+    background-color: #e5c158;
+    color: #000;
+    text-decoration: none;
+}

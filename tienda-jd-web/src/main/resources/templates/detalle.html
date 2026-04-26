@@ -1,41 +1,49 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Detalles</title>
+    <title>Detalles - Groove & Lens</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
-<main>
-    <section>
-        <h2 th:text="${categoriaDetallada.getNombre()}"></h2>
-        <article th:text="${categoriaDetallada.getDescripcion()}"></article>
-        <div th:if="${categoriaDetallada.getImagen() == null}">
-            <img th:src="@{/imagenes/categorias/Imagen_Generica.webp}" alt="Imagen no disponible" style="max-width: 200px;">
-        </div>
+<div class="container">
+    <main>
+        <section style="text-align: center;">
+            <h1 th:text="${categoriaDetallada.getNombre()}"></h1>
 
-        <hr style="margin: 20px 0;"> <div class="catalogo-productos">
-        <h3>Productos en esta categoría</h3>
+            <div th:if="${categoriaDetallada.getImagen() == null}">
+                <img th:src="@{/imagenes/categorias/Imagen_Generica.webp}" alt="Imagen no disponible" style="max-width: 250px; border-radius: 8px;">
+            </div>
 
-        <div th:if="${#lists.isEmpty(listaProductos)}">
-            <p>Aún no tenemos productos disponibles para esta categoría.</p>
-        </div>
+            <article th:text="${categoriaDetallada.getDescripcion()}" style="font-size: 1.1em; margin-bottom: 30px;"></article>
+        </section>
 
-        <div th:unless="${#lists.isEmpty(listaProductos)}">
-            <ul>
-                <li th:each="producto : ${listaProductos}" style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px;">
-                    <h4 th:text="${producto.nombre}">Nombre del Producto</h4>
-                    <p th:text="${producto.descripcion}">Descripción del producto...</p>
-                    <p><strong>Precio:</strong> <span th:text="${producto.precio}">0.00</span> €</p>
-                    <p><strong>Stock disponible:</strong> <span th:text="${producto.stock}">0</span> unidades</p>
-                </li>
-            </ul>
-        </div>
-    </div>
-    </section>
-</main>
-<footer>
-    <a href="/sobre-nosotros.html">Sobre Nosotros</a>
-</footer>
+        <hr>
+
+        <section class="catalogo-productos">
+            <h2>Productos en esta categoría</h2>
+
+            <div th:if="${#lists.isEmpty(listaProductos)}">
+                <p style="opacity: 0.7;">Aún no tenemos productos disponibles para esta categoría.</p>
+            </div>
+
+            <div th:unless="${#lists.isEmpty(listaProductos)}">
+                <ul class="lista-grid">
+                    <li class="card" th:each="producto : ${listaProductos}">
+                        <h3 th:text="${producto.nombre}"></h3>
+                        <p th:text="${producto.descripcion}"></p>
+                        <h4 style="color: #fff;"><span th:text="${producto.precio}">0.00</span> €</h4>
+                        <p style="font-size: 0.9em; color: #aaa;">Stock: <span th:text="${producto.stock}">0</span> uds.</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <a href="/categorias">Volver a Categorías</a> |
+        <a href="/sobre-nosotros.html">Sobre Nosotros</a>
+    </footer>
+</div>
 </body>
 </html>
