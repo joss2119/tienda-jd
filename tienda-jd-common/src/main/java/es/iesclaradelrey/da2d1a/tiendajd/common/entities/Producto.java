@@ -1,18 +1,34 @@
 package es.iesclaradelrey.da2d1a.tiendajd.common.entities;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "productos")
 public class Producto {
 
+    // Atributos
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false, length = 200)
     private String nombre;
+
+    @Column(length = 4000)
     private String descripcion;
+
     private double precio;
     private int stock;
+
+    @Column(length = 500)
     private String imagen;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "categoria_id")
     private Categoria categoria;
 
+    // Constructores
     public Producto() {}
-
     public Producto(Long id, String nombre, String descripcion, double precio, int stock, String imagen, Categoria categoria) {
         this.id = id;
         this.nombre = nombre;
