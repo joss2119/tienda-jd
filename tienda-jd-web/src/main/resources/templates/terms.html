@@ -3,21 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Términos - Groove & Lens</title>
+    <title>Términos y Condiciones - Groove & Lens</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
-<div class="container">
-    <header>
-        <h1>Groove & Lens</h1>
-    </header>
-    <main>
-        <h2>Términos y condiciones</h2>
-        <p>Al navegar y comprar en esta tienda, aceptas que los vinilos molan mucho más que el formato digital. Nos comprometemos a enviar tus productos bien protegidos.</p>
-    </main>
-    <footer>
-        <a href="/categorias">Volver a la Tienda</a>
-    </footer>
-</div>
+
+<!-- CABECERA -->
+<header>
+    <nav class="navbar" aria-label="Navegación principal">
+        <div class="navbar-left">
+            <a th:href="@{/categorias}" class="navbar-logo">Groove & Lens</a>
+        </div>
+        <div class="navbar-menu">
+            <a th:href="@{/categorias}">Inicio</a>
+            <a th:href="@{/productos}">Catálogo</a>
+            <a th:href="@{/sobre-nosotros.html}">Nuestra Historia</a>
+        </div>
+        <div class="navbar-right">
+            <a href="#">Iniciar Sesión</a>
+            <span class="user-icon" aria-hidden="true">👤</span>
+        </div>
+    </nav>
+</header>
+
+<!-- CUERPO PRINCIPAL -->
+<main style="display: flex; justify-content: center; align-items: center; padding: 60px 20px;">
+
+    <section style="background: rgba(20, 20, 20, 0.85); padding: 50px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05); max-width: 800px; width: 100%; box-shadow: 0 10px 40px rgba(0,0,0,0.7); backdrop-filter: blur(5px);">
+
+        <header style="text-align: center; margin-bottom: 40px; border-bottom: 1px solid rgba(212, 175, 55, 0.2); padding-bottom: 20px;">
+            <h1 style="color: #d4af37; font-size: 2.5rem; margin: 0 0 10px 0;">Términos y Condiciones</h1>
+            <h2 style="color: #e0e0e0; font-weight: 300; margin: 0; font-size: 1.2rem;">Las reglas del juego en Groove & Lens</h2>
+        </header>
+
+        <article style="line-height: 1.8; font-size: 1.1rem; color: #ccc; text-align: center;">
+            <p>Al navegar y comprar en esta tienda, aceptas sin reservas que los vinilos molan mucho más que cualquier formato digital comprimido.</p>
+            <p>Nos comprometemos solemnemente a enviar tus productos bien protegidos, para que tu música llegue intacta y lista para girar en el tocadiscos.</p>
+        </article>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <a th:href="@{/categorias}" class="panel-btn" style="font-size: 1rem; padding: 10px 25px;">Acepto y quiero ver vinilos</a>
+        </div>
+
+    </section>
+
+</main>
+
+<!-- PIE DE PÁGINA -->
+<footer class="footer-genshin">
+    <nav class="footer-links" aria-label="Enlaces legales y de contacto">
+        <a th:href="@{/sobre-nosotros.html}">Sobre Nosotros</a>
+        <a th:href="@{/terms}">Términos de Servicio</a>
+        <a href="#">Contáctanos</a>
+        <a href="#">Política de Privacidad</a>
+    </nav>
+    <div class="footer-legal">
+        <p>"Groove & Lens" es un proyecto de pasión musical.</p>
+        <p>Copyright © 2026 José David. All Rights Reserved.</p>
+    </div>
+</footer>
+
 </body>
 </html>

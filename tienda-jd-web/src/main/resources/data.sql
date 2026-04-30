@@ -1,10 +1,13 @@
-INSERT INTO categorias (nombre, descripcion, minimo, imagen) VALUES ('Vinilos', 'Discos de vinilo de todos los géneros musicales, ediciones limitadas y clásicos.', 0, 'vinilos.jpg');
-INSERT INTO categorias (nombre, descripcion, minimo, imagen) VALUES ('Reproductores', 'Tocadiscos, amplificadores y equipos de sonido de alta fidelidad.', 0, 'reproductores.jpg');
-INSERT INTO categorias (nombre, descripcion, minimo, imagen) VALUES ('Mantenimiento', 'Kits de limpieza, cepillos antiestáticos y líquidos para el cuidado de tus discos.', 0, 'mantenimiento.jpg');
-INSERT INTO categorias (nombre, descripcion, minimo, imagen) VALUES ('Accesorios', 'Fundas interiores, carcasas personalizadas y agujas de repuesto.', 0, null);
+-- ---------------------------------------------------------
+-- 1. CATEGORÍAS (Con las rutas de imagen reales de tu proyecto)
+-- ---------------------------------------------------------
+INSERT INTO categorias (nombre, descripcion, minimo, imagen) VALUES ('Vinilos', 'Discos de vinilo de todos los géneros musicales, ediciones limitadas y clásicos.', 0, 'categorias/vinilos.avif');
+INSERT INTO categorias (nombre, descripcion, minimo, imagen) VALUES ('Reproductores', 'Tocadiscos, amplificadores y equipos de sonido de alta fidelidad.', 0, 'categorias/tocadiscos.webp');
+INSERT INTO categorias (nombre, descripcion, minimo, imagen) VALUES ('Mantenimiento', 'Kits de limpieza, cepillos antiestáticos y líquidos para el cuidado de tus discos.', 0, 'categorias/mantenimiento.jpg');
+INSERT INTO categorias (nombre, descripcion, minimo, imagen) VALUES ('Accesorios', 'Fundas interiores, carcasas personalizadas y agujas de repuesto.', 0, 'categorias/accesorios.webp');
 
 -- ---------------------------------------------------------
--- PRODUCTOS: Vinilos (ID Categoría 1)
+-- 2. PRODUCTOS: Vinilos (ID Categoría 1)
 -- ---------------------------------------------------------
 -- Con marca e imagen (Descripción larga)
 INSERT INTO productos (codigo, nombre, marca, descripcion, precio, descuento, stock, imagen, categoria_id)

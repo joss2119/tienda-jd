@@ -3,34 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Catálogo - Groove & Lens</title>
+    <title>Inicio - Groove & Lens</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
-<div class="container">
-    <header>
-        <h1>Groove & Lens</h1>
-        <p>Explora nuestras categorías</p>
-    </header>
 
-    <ul class="lista-grid">
-        <li class="card" th:each="categoria : ${listaCategorias}">
-            <h2 th:text="${categoria.getNombre()}"></h2>
+<!-- 1. CABECERA: Usamos <header> y <nav> para la navegación -->
+<header>
+    <nav class="navbar" aria-label="Navegación principal">
+        <div class="navbar-left">
+            <a th:href="@{/categorias}" class="navbar-logo">Groove & Lens</a>
+        </div>
 
-            <div th:if="${categoria.getImagen() == null}">
-                <img th:src="@{/imagenes/categorias/Imagen_Generica.webp}" alt="Imagen no disponible" style="max-width: 150px;">
-            </div>
+        <div class="navbar-menu">
+            <a th:href="@{/categorias}">Inicio</a>
+            <a th:href="@{/productos}">Catálogo</a>
+            <a th:href="@{/sobre-nosotros.html}">Nuestra Historia</a>
+        </div>
 
-            <p th:text="${categoria.getDescripcion()}"></p>
+        <div class="navbar-right">
+            <a href="#">Iniciar Sesión</a>
+            <span class="user-icon" aria-hidden="true">👤</span>
+        </div>
+    </nav>
+</header>
 
-            <a class="btn" th:href="@{/categorias/{id}(id=${categoria.id})}">Ver detalles</a>
-        </li>
-    </ul>
+<!-- 2. CUERPO PRINCIPAL: Usamos <main> -->
+<main>
+    <!-- Agrupamos el contenido en un <section> -->
+    <section class="categorias-hero" aria-label="Categorías de productos">
 
-    <footer>
-        <a href="/sobre-nosotros.html">Sobre Nosotros</a> |
-        <a href="/terms">Términos y Condiciones</a>
-    </footer>
-</div>
+        <!-- Bucle Thymeleaf: Cada categoría es un <article> independiente -->
+        <a th:each="categoria : ${listaCategorias}"
+           th:href="@{/categorias/{id}(id=${categoria.id})}"
+           class="panel-link"
+           aria-label="'Ver categoría ' + ${categoria.nombre}">
+
+            <article class="panel-categoria"
+                     th:style="|background-image: url('@{/imagenes/{img}(img=${categoria.imagen != null ? categoria.imagen : 'categorias/Imagen_Generica.webp'})}');|">
+
+                <div class="panel-content">
+                    <!-- Título de la categoría. Usamos un h2 visualmente oculto o integrado en el botón por semántica -->
+                    <h2 class="panel-btn" th:text="${categoria.nombre}"></h2>
+                </div>
+
+            </article>
+        </a>
+
+    </section>
+</main>
+
+<!-- 3. PIE DE PÁGINA: Usamos <footer> -->
+<footer class="footer-genshin">
+    <!-- Navegación secundaria dentro del footer -->
+    <nav class="footer-links" aria-label="Enlaces legales y de contacto">
+        <a th:href="@{/sobre-nosotros.html}">Sobre Nosotros</a>
+        <a th:href="@{/terms}">Términos de Servicio</a>
+        <a href="#">Contáctanos</a>
+        <a href="#">Política de Privacidad</a>
+    </nav>
+
+    <div class="footer-legal">
+        <p>"Groove & Lens" es un proyecto de pasión musical.</p>
+        <p>Copyright © 2026 José David. All Rights Reserved.</p>
+    </div>
+</footer>
+
 </body>
 </html>

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${producto.nombre} + ' - Groove & Lens'">Detalle del Producto</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<!-- CABECERA -->
+<header>
+    <nav class="navbar" aria-label="Navegación principal">
+        <div class="navbar-left">
+            <a th:href="@{/categorias}" class="navbar-logo">Groove & Lens</a>
+        </div>
+        <div class="navbar-menu">
+            <a th:href="@{/categorias}">Inicio</a>
+            <a th:href="@{/productos}">Catálogo</a>
+            <a th:href="@{/sobre-nosotros.html}">Nuestra Historia</a>
+        </div>
+        <div class="navbar-right">
+            <a href="#">Iniciar Sesión</a>
+            <span class="user-icon" aria-hidden="true">👤</span>
+        </div>
+    </nav>
+</header>
+
+<main style="flex: 1; padding: 40px 20px; display: flex; justify-content: center; align-items: center;">
+
+    <!-- CONTENEDOR DEL PRODUCTO INDIVIDUAL -->
+    <section class="producto-single-container" aria-label="Detalles del producto">
+
+        <!-- Columna Izquierda: Imagen -->
+        <div class="producto-single-img">
+            <!-- Globo de descuento -->
+            <div class="badge-descuento-single" th:if="${producto.descuento > 0}" th:text="'-' + ${producto.descuento} + '%'"></div>
+
+            <img th:if="${producto.imagen != null}"
+                 th:src="@{/imagenes/{img}(img=${producto.imagen})}"
+                 th:alt="'Imagen de ' + ${producto.nombre}">
+
+            <img th:unless="${producto.imagen != null}"
+                 th:src="@{/imagenes/categorias/Imagen_Generica.webp}"
+                 alt="Imagen no disponible">
+        </div>
+
+        <!-- Columna Derecha: Información -->
+        <div class="producto-single-info">
+            <h1 th:text="${producto.nombre}"></h1>
+
+            <p class="producto-single-marca" th:if="${producto.marca != null}" th:text="'Marca: ' + ${producto.marca}"></p>
+            <p class="producto-single-ean" th:text="'EAN: ' + ${producto.codigo}"></p>
+
+            <div class="producto-single-precios">
+                <span class="precio-tachado" th:if="${producto.descuento > 0}" th:text="${#numbers.formatDecimal(producto.precio, 1, 2)} + ' €'"></span>
+                <span class="precio-final" th:if="${producto.descuento > 0}" th:text="${#numbers.formatDecimal(producto.precio - (producto.precio * producto.descuento / 100.0), 1, 2)} + ' €'"></span>
+                <span class="precio-final" th:unless="${producto.descuento > 0}" th:text="${#numbers.formatDecimal(producto.precio, 1, 2)} + ' €'"></span>
+            </div>
+
+            <div class="producto-single-stock">
+                <span th:if="${producto.stock > 0}" style="color: #5cb85c;">En stock: <span th:text="${producto.stock}"></span> unidades</span>
+                <span th:unless="${producto.stock > 0}" style="color: #d9534f;">Agotado temporalmente</span>
+            </div>
+
+            <hr style="border-color: rgba(255,255,255,0.1); margin: 20px 0;">
+
+            <div class="producto-single-desc">
+                <h3>Descripción del producto</h3>
+                <!-- Aquí NO truncamos la descripción -->
+                <p th:text="${producto.descripcion}"></p>
+            </div>
+
+            <button class="panel-btn" style="margin-top: 20px; width: 100%;">Añadir al carrito</button>
+        </div>
+
+    </section>
+
+</main>
+
+<!-- PIE DE PÁGINA -->
+<footer class="footer-genshin">
+    <nav class="footer-links" aria-label="Enlaces legales y de contacto">
+        <a th:href="@{/sobre-nosotros.html}">Sobre Nosotros</a>
+        <a th:href="@{/terms}">Términos de Servicio</a>
+        <a href="#">Contáctanos</a>
+        <a href="#">Política de Privacidad</a>
+    </nav>
+    <div class="footer-legal">
+        <p>"Groove & Lens" es un proyecto de pasión musical.</p>
+        <p>Copyright © 2026 José David. All Rights Reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>

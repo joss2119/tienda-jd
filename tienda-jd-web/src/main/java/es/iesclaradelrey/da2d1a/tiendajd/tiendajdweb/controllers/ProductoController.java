@@ -32,7 +32,7 @@ public class ProductoController {
     public String detalleProducto(Model model, @PathVariable Long id, @PathVariable String nombreEscapado) {
         Producto producto = productoService.findById(id).orElse(null);
 
-        model.addAttribute("productoDetallado", producto);
+        model.addAttribute("producto", producto);
 
         return "detalleProducto";
     }

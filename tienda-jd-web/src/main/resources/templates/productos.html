@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title th:text="${categoriaDetallada.nombre} + ' - Groove & Lens'">Detalles - Groove & Lens</title>
+    <title>Catálogo Completo - Groove & Lens</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
 
-<!-- 1. CABECERA -->
+<!-- CABECERA -->
 <header>
     <nav class="navbar" aria-label="Navegación principal">
         <div class="navbar-left">
@@ -27,19 +27,18 @@
 </header>
 
 <main>
-    <!-- 2. BANNER DE LA CATEGORÍA -->
-    <section class="categoria-banner" aria-label="Detalles de la categoría"
-             th:style="|background-image: linear-gradient(rgba(15, 15, 15, 0.6), rgba(15, 15, 15, 0.95)), url('@{/imagenes/{img}(img=${categoriaDetallada.imagen != null ? categoriaDetallada.imagen : 'categorias/Imagen_Generica.webp'})}');|">
-        <h1 th:text="${categoriaDetallada.nombre}"></h1>
-        <p th:text="${categoriaDetallada.descripcion}"></p>
+    <!-- BANNER DEL CATÁLOGO -->
+    <section class="categoria-banner" aria-label="Catálogo completo"
+             style="padding: 60px 20px 40px 20px;">
+        <h1>Catálogo Completo</h1>
+        <p>Explora toda nuestra colección de vinilos, reproductores de alta fidelidad y accesorios para el cuidado de tu música.</p>
     </section>
 
-    <!-- 3. LISTADO DE PRODUCTOS (Cumpliendo Fase 5) -->
-    <section class="productos-contenedor" aria-label="Productos de la categoría">
-        <h2 class="section-title">Productos disponibles</h2>
+    <!-- LISTADO DE TODOS LOS PRODUCTOS -->
+    <section class="productos-contenedor" aria-label="Todos los productos">
 
         <div th:if="${#lists.isEmpty(listaProductos)}" class="empty-state">
-            <p>Aún no tenemos productos disponibles para esta categoría.</p>
+            <p>Aún no tenemos productos disponibles en el catálogo.</p>
         </div>
 
         <div th:unless="${#lists.isEmpty(listaProductos)}" class="productos-grid">
@@ -89,7 +88,7 @@
     </section>
 </main>
 
-<!-- 4. PIE DE PÁGINA -->
+<!-- PIE DE PÁGINA -->
 <footer class="footer-genshin">
     <nav class="footer-links" aria-label="Enlaces legales y de contacto">
         <a th:href="@{/sobre-nosotros.html}">Sobre Nosotros</a>
