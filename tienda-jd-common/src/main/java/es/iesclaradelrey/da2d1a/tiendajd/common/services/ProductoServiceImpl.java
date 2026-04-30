@@ -5,6 +5,7 @@ import es.iesclaradelrey.da2d1a.tiendajd.common.repositories.ProductoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductoServiceImpl implements ProductoService {
@@ -21,7 +22,7 @@ public class ProductoServiceImpl implements ProductoService {
     }
 
     @Override
-    public Producto findById(Long id) {
+    public Optional<Producto> findById(Long id) {
         return productoRepository.findById(id);
     }
 

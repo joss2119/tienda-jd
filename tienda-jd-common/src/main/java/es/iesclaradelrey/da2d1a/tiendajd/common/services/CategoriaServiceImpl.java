@@ -5,6 +5,7 @@ import es.iesclaradelrey.da2d1a.tiendajd.common.repositories.CategoriaRepository
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoriaServiceImpl implements CategoriaService {
@@ -20,7 +21,7 @@ public class CategoriaServiceImpl implements CategoriaService {
     }
 
     @Override
-    public Categoria findById(Long id){
+    public Optional<Categoria> findById(Long id){
         return categoriaRepository.findById(id);
     }
 

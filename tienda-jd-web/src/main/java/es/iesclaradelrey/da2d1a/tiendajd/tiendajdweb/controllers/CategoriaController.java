@@ -30,7 +30,7 @@ public class CategoriaController {
 
     @GetMapping("/{id}")
     public String categoria(Model model, @PathVariable Long id){
-        model.addAttribute("categoriaDetallada", categoriaService.findById(id));
+        model.addAttribute("categoriaDetallada", categoriaService.findById(id).orElse(null));
 
         model.addAttribute("listaProductos", productoService.findByCategoriaId(id));
 
