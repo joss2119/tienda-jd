@@ -4,14 +4,8 @@ import es.iesclaradelrey.da2d1a.tiendajd.common.entities.Producto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.Optional;
-
 @Repository
-public interface ProductoRepository extends JpaRepository<Producto,Long> {
-    List<Producto> findAll();
-    Optional<Producto> findById(Long id);
-    Producto save(Producto producto);
-
-    List<Producto> findByCategoriaId(Long categoriaId);
+public interface ProductoRepository extends JpaRepository<Producto, Long> {
+    // ¡Dejamos esto vacío! JPA ya nos da el findAll, findById y save gratis.
+    // Y eliminamos el findByCategoriaId para cumplir la regla de la Fase 7.
 }

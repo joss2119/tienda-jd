@@ -1,101 +1,130 @@
 -- ---------------------------------------------------------
--- 1. CATEGORÍAS (Con las rutas de imagen reales de tu proyecto)
+-- 1. MARCAS (Nueva entidad obligatoria)[cite: 3]
 -- ---------------------------------------------------------
-INSERT INTO categorias (nombre, descripcion, minimo, imagen) VALUES ('Vinilos', 'Discos de vinilo de todos los géneros musicales, ediciones limitadas y clásicos.', 0, 'categorias/vinilos.avif');
-INSERT INTO categorias (nombre, descripcion, minimo, imagen) VALUES ('Reproductores', 'Tocadiscos, amplificadores y equipos de sonido de alta fidelidad.', 0, 'categorias/tocadiscos.webp');
-INSERT INTO categorias (nombre, descripcion, minimo, imagen) VALUES ('Mantenimiento', 'Kits de limpieza, cepillos antiestáticos y líquidos para el cuidado de tus discos.', 0, 'categorias/mantenimiento.jpg');
-INSERT INTO categorias (nombre, descripcion, minimo, imagen) VALUES ('Accesorios', 'Fundas interiores, carcasas personalizadas y agujas de repuesto.', 0, 'categorias/accesorios.webp');
-
--- ---------------------------------------------------------
--- 2. PRODUCTOS: Vinilos (ID Categoría 1)
--- ---------------------------------------------------------
--- Con marca e imagen (Descripción larga)
-INSERT INTO productos (codigo, nombre, marca, descripcion, precio, descuento, stock, imagen, categoria_id)
-VALUES ('8411122233301', 'Pink Floyd - The Dark Side of the Moon (Edición 50 Aniversario)', 'Sony Music', 'Revive el clásico atemporal del rock progresivo en esta edición remasterizada por el 50 aniversario. El vinilo de 180 gramos ofrece una fidelidad de audio inigualable, capturando cada matiz de los sintetizadores, las guitarras de Gilmour y las icónicas transiciones experimentales. Incluye pósters y pegatinas originales en una cubierta gatefold de lujo.', 35.90, 10, 50, 'pink_floyd_dark_side.jpg', 1);
-
--- Sin marca, con imagen
-INSERT INTO productos (codigo, nombre, descripcion, precio, descuento, stock, imagen, categoria_id)
-VALUES ('8411122233302', 'Daft Punk - Random Access Memories', 'El último gran hito de la música electrónica. Un viaje analógico y orgánico que redefinió el género con colaboraciones legendarias como Giorgio Moroder y Pharrell Williams. Doble vinilo de alta calidad para disfrutar de la calidez de sus bajos.', 28.50, 0, 30, 'daft_punk_ram.jpg', 1);
-
--- Con marca, sin imagen (Descripción larga)
-INSERT INTO productos (codigo, nombre, marca, descripcion, precio, descuento, stock, categoria_id)
-VALUES ('8411122233303', 'Miles Davis - Kind of Blue', 'Columbia Records', 'Considerado por muchos como el mejor álbum de jazz de todos los tiempos. Esta obra maestra del jazz modal, grabada en 1959, reúne a gigantes como John Coltrane y Bill Evans. La pureza del sonido en esta reedición analógica te transportará directamente al estudio de grabación. Indispensable en cualquier colección seria.', 25.00, 15, 20, 1);
-
--- Sin marca, sin imagen
-INSERT INTO productos (codigo, nombre, descripcion, precio, descuento, stock, categoria_id)
-VALUES ('8411122233304', 'Fleetwood Mac - Rumours', 'Uno de los álbumes más vendidos de la historia, lleno de himnos pop-rock nacidos de la tensión y el talento desbordante de la banda. Canciones inolvidables en un prensaje de calidad.', 22.90, 0, 40, 1);
-
--- Más vinilos variados...
-INSERT INTO productos (codigo, nombre, marca, descripcion, precio, descuento, stock, imagen, categoria_id)
-VALUES ('8411122233305', 'Rosalía - Motomami', 'Columbia', 'El álbum que rompió esquemas en 2022. Una fusión audaz de géneros en un vinilo rojo transparente exclusivo.', 32.00, 5, 15, 'rosalia_motomami.jpg', 1);
-
-INSERT INTO productos (codigo, nombre, marca, descripcion, precio, descuento, stock, imagen, categoria_id)
-VALUES ('8411122233306', 'Michael Jackson - Thriller', 'Epic', 'El rey del pop en su máxima expresión. Edición en vinilo estándar con el tracklist original que definió la década de los 80.', 20.00, 0, 60, 'mj_thriller.jpg', 1);
-
+INSERT INTO marcas (nombre) VALUES ('Sony Music');       -- ID 1
+INSERT INTO marcas (nombre) VALUES ('Columbia Records'); -- ID 2
+INSERT INTO marcas (nombre) VALUES ('Columbia');         -- ID 3
+INSERT INTO marcas (nombre) VALUES ('Epic');             -- ID 4
+INSERT INTO marcas (nombre) VALUES ('Audio-Technica');   -- ID 5
+INSERT INTO marcas (nombre) VALUES ('Sony');             -- ID 6
+INSERT INTO marcas (nombre) VALUES ('Edifier');          -- ID 7
+INSERT INTO marcas (nombre) VALUES ('AM Clean Sound');   -- ID 8
+INSERT INTO marcas (nombre) VALUES ('Nagaoka');          -- ID 9
+INSERT INTO marcas (nombre) VALUES ('Ortofon');          -- ID 10
+INSERT INTO marcas (nombre) VALUES ('Pro-Ject');         -- ID 11
+INSERT INTO marcas (nombre) VALUES ('Kallax Design');    -- ID 12
+INSERT INTO marcas (nombre) VALUES ('Genérica');         -- ID 13 (Para los productos que no tenían marca)
+INSERT INTO marcas (nombre) VALUES ('Marca Fantasma');   -- ID 14 (Cumple: Marca sin productos)[cite: 3]
 
 -- ---------------------------------------------------------
--- PRODUCTOS: Reproductores (ID Categoría 2)
+-- 2. CATEGORÍAS
 -- ---------------------------------------------------------
--- Con marca e imagen (Descripción larga)
-INSERT INTO productos (codigo, nombre, marca, descripcion, precio, descuento, stock, imagen, categoria_id)
-VALUES ('8411122233307', 'Tocadiscos Audio-Technica AT-LP120XUSB', 'Audio-Technica', 'Tocadiscos profesional de tracción directa totalmente manual. Diseñado para ofrecer una calidad de sonido excepcional tanto para audiófilos como para DJs. Cuenta con un motor de alto par, control de pitch ajustable, preamplificador fono incorporado y salida USB para digitalizar tus vinilos directamente al ordenador. Su robusta base minimiza las vibraciones no deseadas.', 299.00, 20, 10, 'audio_technica_lp120.jpg', 2);
-
--- Con marca, sin imagen
-INSERT INTO productos (codigo, nombre, marca, descripcion, precio, descuento, stock, categoria_id)
-VALUES ('8411122233308', 'Tocadiscos Sony PS-LX310BT', 'Sony', 'Tocadiscos automático con conectividad Bluetooth. Escucha tus vinilos de forma inalámbrica en tus altavoces o auriculares favoritos con la máxima comodidad. Diseño elegante y minimalista.', 249.00, 0, 15, 2);
-
--- Sin marca, con imagen
-INSERT INTO productos (codigo, nombre, descripcion, precio, descuento, stock, imagen, categoria_id)
-VALUES ('8411122233309', 'Amplificador Estéreo Vintage 100W', 'Potente amplificador de diseño retro con carcasa de madera. Ofrece 100W de potencia pura, ecualizador analógico de 3 bandas y entrada Phono dedicada para sacar el máximo partido a tu tocadiscos.', 180.00, 5, 5, 'amplificador_vintage.jpg', 2);
-
--- Con marca e imagen
-INSERT INTO productos (codigo, nombre, marca, descripcion, precio, descuento, stock, imagen, categoria_id)
-VALUES ('8411122233310', 'Altavoces Activos Edifier R1280T', 'Edifier', 'Pareja de altavoces de estantería autoamplificados. Con su acabado en madera y sonido equilibrado, son el complemento perfecto y económico para cualquier tocadiscos con salida de línea.', 110.00, 10, 25, 'edifier_r1280t.jpg', 2);
-
+INSERT INTO categorias (nombre, descripcion, minimo, imagen) VALUES ('Vinilos', 'Discos de vinilo de todos los géneros musicales, ediciones limitadas y clásicos.', 0, 'categorias/vinilos.avif'); -- ID 1
+INSERT INTO categorias (nombre, descripcion, minimo, imagen) VALUES ('Reproductores', 'Tocadiscos, amplificadores y equipos de sonido de alta fidelidad.', 0, 'categorias/tocadiscos.webp'); -- ID 2
+INSERT INTO categorias (nombre, descripcion, minimo, imagen) VALUES ('Mantenimiento', 'Kits de limpieza, cepillos antiestáticos y líquidos para el cuidado de tus discos.', 0, 'categorias/mantenimiento.jpg'); -- ID 3
+INSERT INTO categorias (nombre, descripcion, minimo, imagen) VALUES ('Accesorios', 'Fundas interiores, carcasas personalizadas y agujas de repuesto.', 0, 'categorias/accesorios.webp'); -- ID 4
+INSERT INTO categorias (nombre, descripcion, minimo, imagen) VALUES ('Merchandising', 'Camisetas y tazas (Próximamente)', 0, 'categorias/Imagen_Generica.webp'); -- ID 5 (Cumple: Categorías sin productos)[cite: 3]
+INSERT INTO categorias (nombre, descripcion, minimo, imagen) VALUES ('Ediciones de Coleccionista', 'Joyas raras y caras', 0, 'categorias/Imagen_Generica.webp'); -- ID 6 (Cumple: Categorías con un solo producto)[cite: 3]
 
 -- ---------------------------------------------------------
--- PRODUCTOS: Mantenimiento (ID Categoría 3)
+-- 3. PRODUCTOS (Con 'marca_id' y sin 'categoria_id')[cite: 3]
 -- ---------------------------------------------------------
--- Con marca e imagen (Descripción larga)
-INSERT INTO productos (codigo, nombre, marca, descripcion, precio, descuento, stock, imagen, categoria_id)
-VALUES ('8411122233311', 'Kit de Limpieza Profesional AM Record Cleaner', 'AM Clean Sound', 'El kit definitivo para el cuidado de tu colección. Incluye una solución limpiadora sin alcohol que disuelve la grasa y la suciedad incrustada sin dañar los surcos, un paño de microfibra ultrasuave para el secado y un cepillo de terciopelo para la limpieza profunda en húmedo. Mantener tus discos limpios prolonga la vida de tu aguja y mejora drásticamente la calidad del sonido.', 24.50, 0, 40, 'am_clean_kit.jpg', 3);
+-- VINILOS
+INSERT INTO productos (codigo, nombre, descripcion, precio, descuento, stock, imagen, marca_id)
+VALUES ('8411122233301', 'Pink Floyd - The Dark Side of the Moon', 'Revive el clásico atemporal del rock progresivo... Incluye pósters y pegatinas.', 35.90, 10, 50, 'pink_floyd_dark_side.jpg', 1);
 
--- Sin marca, sin imagen
-INSERT INTO productos (codigo, nombre, descripcion, precio, descuento, stock, categoria_id)
-VALUES ('8411122233312', 'Cepillo Antiestático de Fibra de Carbono', 'Cepillo básico e indispensable. Sus millones de fibras de carbono descargan la electricidad estática del vinilo antes de la reproducción, atrayendo el polvo superficial y evitando crujidos.', 12.00, 0, 100, 3);
+INSERT INTO productos (codigo, nombre, descripcion, precio, descuento, stock, imagen, marca_id)
+VALUES ('8411122233302', 'Daft Punk - Random Access Memories', 'El último gran hito de la música electrónica... Doble vinilo de alta calidad.', 28.50, 0, 30, 'daft_punk_ram.jpg', 13);
 
--- Con marca e imagen
-INSERT INTO productos (codigo, nombre, marca, descripcion, precio, descuento, stock, imagen, categoria_id)
-VALUES ('8411122233313', 'Líquido Limpiador de Agujas Audio-Technica AT607a', 'Audio-Technica', 'Solución limpiadora específica para agujas de tocadiscos. Incluye un pincel aplicador en la tapa para eliminar de forma segura el polvo y los residuos adheridos al diamante.', 15.90, 0, 30, 'at607a_cleaner.jpg', 3);
+INSERT INTO productos (codigo, nombre, descripcion, precio, descuento, stock, imagen, marca_id)
+VALUES ('8411122233303', 'Miles Davis - Kind of Blue', 'Considerado por muchos como el mejor álbum de jazz de todos los tiempos...', 25.00, 15, 20, null, 2);
 
--- Con marca, sin imagen
-INSERT INTO productos (codigo, nombre, marca, descripcion, precio, descuento, stock, categoria_id)
-VALUES ('8411122233314', 'Rodillo Limpiador de Gel Reutilizable', 'Nagaoka', 'Rodillo de gel adhesivo que atrapa el polvo de la superficie del vinilo con solo pasarlo suavemente. Lavable y reutilizable durante años.', 22.00, 15, 20, 3);
+INSERT INTO productos (codigo, nombre, descripcion, precio, descuento, stock, imagen, marca_id)
+VALUES ('8411122233304', 'Fleetwood Mac - Rumours', 'Uno de los álbumes más vendidos de la historia... Prensaje de calidad.', 22.90, 0, 40, null, 13);
 
+INSERT INTO productos (codigo, nombre, descripcion, precio, descuento, stock, imagen, marca_id)
+VALUES ('8411122233305', 'Rosalía - Motomami', 'El álbum que rompió esquemas en 2022. Una fusión audaz de géneros.', 32.00, 5, 15, 'rosalia_motomami.jpg', 3);
+
+INSERT INTO productos (codigo, nombre, descripcion, precio, descuento, stock, imagen, marca_id)
+VALUES ('8411122233306', 'Michael Jackson - Thriller', 'El rey del pop en su máxima expresión. Edición en vinilo estándar.', 20.00, 0, 60, 'mj_thriller.jpg', 4);
+
+-- REPRODUCTORES
+INSERT INTO productos (codigo, nombre, descripcion, precio, descuento, stock, imagen, marca_id)
+VALUES ('8411122233307', 'Tocadiscos Audio-Technica AT-LP120XUSB', 'Tocadiscos profesional de tracción directa totalmente manual...', 299.00, 20, 10, 'audio_technica_lp120.jpg', 5);
+
+INSERT INTO productos (codigo, nombre, descripcion, precio, descuento, stock, imagen, marca_id)
+VALUES ('8411122233308', 'Tocadiscos Sony PS-LX310BT', 'Tocadiscos automático con conectividad Bluetooth...', 249.00, 0, 15, null, 6);
+
+INSERT INTO productos (codigo, nombre, descripcion, precio, descuento, stock, imagen, marca_id)
+VALUES ('8411122233309', 'Amplificador Estéreo Vintage 100W', 'Potente amplificador de diseño retro con carcasa de madera...', 180.00, 5, 5, 'amplificador_vintage.jpg', 13);
+
+INSERT INTO productos (codigo, nombre, descripcion, precio, descuento, stock, imagen, marca_id)
+VALUES ('8411122233310', 'Altavoces Activos Edifier R1280T', 'Pareja de altavoces de estantería autoamplificados...', 110.00, 10, 25, 'edifier_r1280t.jpg', 7);
+
+-- MANTENIMIENTO
+INSERT INTO productos (codigo, nombre, descripcion, precio, descuento, stock, imagen, marca_id)
+VALUES ('8411122233311', 'Kit de Limpieza Profesional AM Record Cleaner', 'El kit definitivo para el cuidado de tu colección...', 24.50, 0, 40, 'am_clean_kit.jpg', 8);
+
+INSERT INTO productos (codigo, nombre, descripcion, precio, descuento, stock, imagen, marca_id)
+VALUES ('8411122233312', 'Cepillo Antiestático de Fibra de Carbono', 'Cepillo básico e indispensable. Sus millones de fibras de carbono...', 12.00, 0, 100, null, 13);
+
+INSERT INTO productos (codigo, nombre, descripcion, precio, descuento, stock, imagen, marca_id)
+VALUES ('8411122233313', 'Líquido Limpiador de Agujas Audio-Technica AT607a', 'Solución limpiadora específica para agujas de tocadiscos...', 15.90, 0, 30, 'at607a_cleaner.jpg', 5);
+
+INSERT INTO productos (codigo, nombre, descripcion, precio, descuento, stock, imagen, marca_id)
+VALUES ('8411122233314', 'Rodillo Limpiador de Gel Reutilizable', 'Rodillo de gel adhesivo que atrapa el polvo... Lavable y reutilizable.', 22.00, 15, 20, null, 9);
+
+-- ACCESORIOS
+INSERT INTO productos (codigo, nombre, descripcion, precio, descuento, stock, imagen, marca_id)
+VALUES ('8411122233315', 'Aguja de Repuesto Ortofon 2M Red', 'La aguja de repuesto para la cápsula de imán móvil más popular...', 55.00, 5, 15, 'ortofon_2mred.jpg', 10);
+
+INSERT INTO productos (codigo, nombre, descripcion, precio, descuento, stock, imagen, marca_id)
+VALUES ('8411122233316', 'Pack 50 Fundas Interiores Antiestáticas', 'Protege tus discos del polvo y los arañazos con estas fundas interiores...', 18.50, 0, 50, 'fundas_interiores.jpg', 13);
+
+INSERT INTO productos (codigo, nombre, descripcion, precio, descuento, stock, imagen, marca_id)
+VALUES ('8411122233317', 'Pack 50 Fundas Exteriores Transparentes', 'Mantén las portadas de tus vinilos como el primer día...', 20.00, 10, 60, null, 13);
+
+INSERT INTO productos (codigo, nombre, descripcion, precio, descuento, stock, imagen, marca_id)
+VALUES ('8411122233318', 'Peso Estabilizador de Discos Record Weight', 'Estabilizador de aluminio de 400 gramos. Reduce las resonancias...', 45.00, 0, 10, 'project_weight.jpg', 11);
+
+INSERT INTO productos (codigo, nombre, descripcion, precio, descuento, stock, imagen, marca_id)
+VALUES ('8411122233319', 'Mueble Estantería para 100 Vinilos', 'Mueble de madera resistente diseñado específicamente para soportar el peso...', 49.90, 20, 8, null, 12);
+
+INSERT INTO productos (codigo, nombre, descripcion, precio, descuento, stock, imagen, marca_id)
+VALUES ('8411122233320', 'Caja de Almacenamiento Estilo Flight Case', 'Maleta de transporte robusta con esquinas reforzadas... Capacidad 50 vinilos.', 65.00, 0, 5, 'flight_case_vinilos.jpg', 13);
 
 -- ---------------------------------------------------------
--- PRODUCTOS: Accesorios (ID Categoría 4)
+-- 4. RELACIÓN PRODUCTOS-CATEGORÍAS (Tabla N:M)[cite: 3]
 -- ---------------------------------------------------------
--- Con marca e imagen (Descripción larga)
-INSERT INTO productos (codigo, nombre, marca, descripcion, precio, descuento, stock, imagen, categoria_id)
-VALUES ('8411122233315', 'Aguja de Repuesto Ortofon 2M Red', 'Ortofon', 'La aguja de repuesto para la cápsula de imán móvil (MM) más popular del mercado. La 2M Red ofrece un sonido abierto, dinámico y con un ligero toque de calidez que hace que cualquier género musical brille. Su punta de diamante elíptico garantiza un seguimiento preciso del surco, reduciendo el desgaste del disco y proporcionando una excelente separación de canales.', 55.00, 5, 15, 'ortofon_2mred.jpg', 4);
 
--- Sin marca, con imagen
-INSERT INTO productos (codigo, nombre, descripcion, precio, descuento, stock, imagen, categoria_id)
-VALUES ('8411122233316', 'Pack 50 Fundas Interiores Antiestáticas', 'Protege tus discos del polvo y los arañazos con estas fundas interiores de papel con revestimiento plástico antiestático. Superiores a las fundas de papel estándar.', 18.50, 0, 50, 'fundas_interiores.jpg', 4);
+-- Producto 1 (Pink Floyd) está en Vinilos (1) y Coleccionista (6) -> Cumple: Productos en varias categorías y Categoría con un solo producto[cite: 3]
+INSERT INTO producto_categoria (producto_id, categoria_id) VALUES (1, 1);
+INSERT INTO producto_categoria (producto_id, categoria_id) VALUES (1, 6);
 
--- Sin marca, sin imagen (Descripción larga)
-INSERT INTO productos (codigo, nombre, descripcion, precio, descuento, stock, categoria_id)
-VALUES ('8411122233317', 'Pack 50 Fundas Exteriores Transparentes de Alta Densidad', 'Mantén las portadas de tus vinilos como el primer día. Fabricadas en polietileno de alta densidad (3 milímetros de grosor), estas fundas exteriores previenen el desgaste de los bordes, la decoloración por rayos UV y protegen contra la humedad y el polvo ambiental.', 20.00, 10, 60, 4);
+-- Resto de Vinilos (ID 2 al 6) solo en Categoría 1
+INSERT INTO producto_categoria (producto_id, categoria_id) VALUES (2, 1);
+INSERT INTO producto_categoria (producto_id, categoria_id) VALUES (3, 1);
+INSERT INTO producto_categoria (producto_id, categoria_id) VALUES (4, 1);
+INSERT INTO producto_categoria (producto_id, categoria_id) VALUES (5, 1);
+INSERT INTO producto_categoria (producto_id, categoria_id) VALUES (6, 1);
 
--- Con marca, con imagen
-INSERT INTO productos (codigo, nombre, marca, descripcion, precio, descuento, stock, imagen, categoria_id)
-VALUES ('8411122233318', 'Peso Estabilizador de Discos Record Weight', 'Pro-Ject', 'Estabilizador de aluminio de 400 gramos. Reduce las resonancias, mejora el acoplamiento del disco al plato y ayuda a reproducir vinilos ligeramente deformados con mayor precisión.', 45.00, 0, 10, 'project_weight.jpg', 4);
+-- Reproductores (ID 7 al 10) solo en Categoría 2
+INSERT INTO producto_categoria (producto_id, categoria_id) VALUES (7, 2);
+INSERT INTO producto_categoria (producto_id, categoria_id) VALUES (8, 2);
+INSERT INTO producto_categoria (producto_id, categoria_id) VALUES (9, 2);
+INSERT INTO producto_categoria (producto_id, categoria_id) VALUES (10, 2);
 
--- Con marca, sin imagen
-INSERT INTO productos (codigo, nombre, marca, descripcion, precio, descuento, stock, categoria_id)
-VALUES ('8411122233319', 'Mueble Estantería para 100 Vinilos', 'Kallax Design', 'Mueble de madera resistente diseñado específicamente para soportar el peso de hasta 100 discos de vinilo. Diseño modular ampliable.', 49.90, 20, 8, 4);
+-- Mantenimiento (ID 11 al 14) solo en Categoría 3
+INSERT INTO producto_categoria (producto_id, categoria_id) VALUES (11, 3);
+INSERT INTO producto_categoria (producto_id, categoria_id) VALUES (12, 3);
+INSERT INTO producto_categoria (producto_id, categoria_id) VALUES (13, 3);
+INSERT INTO producto_categoria (producto_id, categoria_id) VALUES (14, 3);
 
--- Sin marca, con imagen
-INSERT INTO productos (codigo, nombre, descripcion, precio, descuento, stock, imagen, categoria_id)
-VALUES ('8411122233320', 'Caja de Almacenamiento Estilo Flight Case', 'Maleta de transporte robusta con esquinas reforzadas de aluminio y acolchado interior. Capacidad para 50 vinilos. Ideal para DJs o para proteger tus joyas más preciadas.', 65.00, 0, 5, 'flight_case_vinilos.jpg', 4);
+-- Accesorios (ID 15 al 19) solo en Categoría 4
+INSERT INTO producto_categoria (producto_id, categoria_id) VALUES (15, 4);
+INSERT INTO producto_categoria (producto_id, categoria_id) VALUES (16, 4);
+INSERT INTO producto_categoria (producto_id, categoria_id) VALUES (17, 4);
+INSERT INTO producto_categoria (producto_id, categoria_id) VALUES (18, 4);
+INSERT INTO producto_categoria (producto_id, categoria_id) VALUES (19, 4);
+
+-- IMPORTANTE: El Producto 20 (Caja Flight Case) NO se inserta en ninguna categoría -> Cumple: Productos en ninguna categoría[cite: 3].

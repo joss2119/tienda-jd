@@ -20,20 +20,21 @@ public class ProductoController {
         this.productoService = productoService;
     }
 
-    // Listado de TODOS los productos
     @GetMapping({"", "/"})
     public String listarProductos(Model model) {
         model.addAttribute("listaProductos", productoService.findAll());
         return "productos";
     }
 
-    // Detalle de un producto específico
     @GetMapping("/{id}/{nombreEscapado}")
     public String detalleProducto(Model model, @PathVariable Long id, @PathVariable String nombreEscapado) {
         Producto producto = productoService.findById(id).orElse(null);
 
-        model.addAttribute("producto", producto);
-
-        return "detalleProducto";
+        if (producto != null) {
+            model.addAttribute("producto", producto);
+            return "detalleProducto";
+        } else {
+            return "redirect:/productos";
+        }
     }
 }

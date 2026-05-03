@@ -8,5 +8,4 @@ public interface ProductoService {
     List<Producto> findAll();
     Optional<Producto> findById(Long id);
     Producto save(Producto producto);
-    List<Producto> findByCategoriaId(Long categoriaId);
 }

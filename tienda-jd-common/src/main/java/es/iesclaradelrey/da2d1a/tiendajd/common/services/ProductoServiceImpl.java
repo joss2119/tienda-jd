@@ -30,9 +30,4 @@ public class ProductoServiceImpl implements ProductoService {
     public Producto save(Producto producto) {
         return productoRepository.save(producto);
     }
-
-    @Override
-    public List<Producto> findByCategoriaId(Long categoriaId) {
-        return productoRepository.findByCategoriaId(categoriaId);
-    }
 }
