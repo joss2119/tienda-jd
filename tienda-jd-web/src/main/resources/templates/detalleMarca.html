@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layouts/base :: head('Productos de ' + ${marca.nombre})}"></head>
+<body class="bg-dark text-light">
+<header th:replace="~{layouts/base :: cabecera}"></header>
+<main class="productos-contenedor">
+    <div class="text-center mb-5" style="text-align: center; margin-bottom: 3rem;">
+        <h1 class="display-4 text-warning" th:text="${marca.nombre}" style="color: #d4af37; font-size: 3.5rem;"></h1>
+        <p class="lead" style="color: #eee;">Productos oficiales de la marca</p>
+        <hr style="border: 1px solid #d4af37; width: 100px; margin: 1rem auto;">
+    </div>
+    <div th:replace="~{productos :: listadoProductos}"></div>
+    <div style="text-align: center; margin-top: 3rem;">
+        <a href="/productos" style="color: #d4af37; text-decoration: none; border: 1px solid #d4af37; padding: 10px 20px; border-radius: 5px;">Volver al Catálogo</a>
+    </div>
+</main>
+<footer th:replace="~{layouts/base :: pie}"></footer>
+</body>
+</html>

@@ -1,60 +1,42 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-
-<head th:replace="layouts/base :: head(${producto.nombre})"></head>
-
-<body>
-
-<header th:replace="layouts/base :: cabecera"></header>
-
-<main style="flex: 1; padding: 40px 20px; display: flex; justify-content: center; align-items: center;">
-
-    <section class="producto-single-container" aria-label="Detalles del producto">
-
+<head th:replace="~{layouts/base :: head(${producto.nombre})}"></head>
+<body class="bg-dark text-light">
+<header th:replace="~{layouts/base :: cabecera}"></header>
+<main class="productos-contenedor" style="display: flex; justify-content: center;">
+    <div class="producto-single-container" th:if="${producto != null}">
         <div class="producto-single-img">
-            <div class="badge-descuento-single" th:if="${producto.descuento > 0}" th:text="'-' + ${producto.descuento} + '%'"></div>
-
-            <img th:if="${producto.imagen != null}"
-                 th:src="@{/imagenes/{img}(img=${producto.imagen})}"
+            <div th:if="${producto.descuento > 0}" class="badge-descuento-single" th:text="'-' + ${producto.descuento} + '%'"></div>
+            <img th:src="@{'/images/productos/' + ${producto.imagen != null ? producto.imagen : 'default.png'}}"
                  th:alt="'Imagen de ' + ${producto.nombre}">
-
-            <img th:unless="${producto.imagen != null}"
-                 th:src="@{/imagenes/categorias/Imagen_Generica.webp}"
-                 alt="Imagen no disponible">
         </div>
-
         <div class="producto-single-info">
+            <p class="producto-single-marca">
+                <a th:href="@{/marcas/{id}(id=${producto.marca.id})}" th:text="${producto.marca.nombre}" style="color: inherit; text-decoration: none;"></a>
+            </p>
             <h1 th:text="${producto.nombre}"></h1>
-
-            <p class="producto-single-marca" th:if="${producto.marca != null}" th:text="'Marca: ' + ${producto.marca}"></p>
-            <p class="producto-single-ean" th:text="'EAN: ' + ${producto.codigo}"></p>
-
+            <p class="producto-single-ean">EAN: <span th:text="${producto.codigo}"></span></p>
             <div class="producto-single-precios">
-                <span class="precio-tachado" th:if="${producto.descuento > 0}" th:text="${#numbers.formatDecimal(producto.precio, 1, 2)} + ' €'"></span>
-                <span class="precio-final" th:if="${producto.descuento > 0}" th:text="${#numbers.formatDecimal(producto.precio - (producto.precio * producto.descuento / 100.0), 1, 2)} + ' €'"></span>
-                <span class="precio-final" th:unless="${producto.descuento > 0}" th:text="${#numbers.formatDecimal(producto.precio, 1, 2)} + ' €'"></span>
+                <span th:if="${producto.descuento > 0}" class="precio-tachado" th:text="${producto.precio} + '€'"></span>
+                <span class="precio-final" th:text="${#numbers.formatDecimal(producto.precio * (1 - producto.descuento/100.0), 1, 2)} + '€'"></span>
             </div>
-
-            <div class="producto-single-stock">
-                <span th:if="${producto.stock > 0}" style="color: #5cb85c;">En stock: <span th:text="${producto.stock}"></span> unidades</span>
-                <span th:unless="${producto.stock > 0}" style="color: #d9534f;">Agotado temporalmente</span>
-            </div>
-
-            <hr style="border-color: rgba(255,255,255,0.1); margin: 20px 0;">
-
             <div class="producto-single-desc">
-                <h3>Descripción del producto</h3>
+                <h3>Descripción</h3>
                 <p th:text="${producto.descripcion}"></p>
             </div>
-
-            <button class="panel-btn" style="margin-top: 20px; width: 100%;">Añadir al carrito</button>
+            <div style="margin-top: 20px;">
+                <p th:if="${#lists.size(producto.categorias) == 1}">
+                    Categoría: <a th:href="@{/categorias/{id}(id=${producto.categorias[0].id})}" th:text="${producto.categorias[0].nombre}" style="color: #d4af37;"></a>
+                </p>
+                <ul th:if="${#lists.size(producto.categorias) > 1}" style="list-style: none; padding: 0; display: flex; gap: 10px;">
+                    <li th:each="cat : ${producto.categorias}">
+                        <a th:href="@{/categorias/{id}(id=${cat.id})}" th:text="${cat.nombre}" style="color: #d4af37; border: 1px solid #d4af37; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem;"></a>
+                    </li>
+                </ul>
+            </div>
         </div>
-
-    </section>
-
+    </div>
 </main>
-
-<footer th:replace="layouts/base :: pie"></footer>
-
+<footer th:replace="~{layouts/base :: pie}"></footer>
 </body>
 </html>

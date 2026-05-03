@@ -1,59 +1,24 @@
 <!doctype html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-
 <head th:replace="layouts/base :: head(${categoriaDetallada.nombre})"></head>
-
 <body>
-
 <header th:replace="layouts/base :: cabecera"></header>
-
 <main>
     <section class="categoria-banner" aria-label="Detalles de la categoría"
              th:style="|background-image: linear-gradient(rgba(15, 15, 15, 0.6), rgba(15, 15, 15, 0.95)), url('@{/imagenes/{img}(img=${categoriaDetallada.imagen != null ? categoriaDetallada.imagen : 'categorias/Imagen_Generica.webp'})}');|">
         <h1 th:text="${categoriaDetallada.nombre}"></h1>
         <p th:text="${categoriaDetallada.descripcion}"></p>
     </section>
-
     <section class="productos-contenedor" aria-label="Productos de la categoría">
         <h2 class="section-title">Productos disponibles</h2>
-
         <div th:if="${#lists.isEmpty(listaProductos)}" class="empty-state">
             <p>Aún no tenemos productos disponibles para esta categoría.</p>
         </div>
-
         <div th:unless="${#lists.isEmpty(listaProductos)}" class="productos-grid">
-            <article class="producto-card" th:each="producto : ${listaProductos}">
-                <div class="badge-descuento" th:if="${producto.descuento > 0}" th:text="'-' + ${producto.descuento} + '%'"></div>
-
-                <div class="producto-img-container">
-                    <img th:if="${producto.imagen != null}"
-                         th:src="@{/imagenes/{img}(img=${producto.imagen})}"
-                         th:alt="'Imagen de ' + ${producto.nombre}">
-
-                    <img th:unless="${producto.imagen != null}"
-                         th:src="@{/imagenes/categorias/Imagen_Generica.webp}"
-                         alt="">
-                </div>
-
-                <div class="producto-info">
-                    <h3>
-                        <a th:href="@{/productos/{id}/{nombre}(id=${producto.id}, nombre=${#strings.replace(producto.nombre, ' ', '-')})}"
-                           th:text="${producto.nombre}"></a>
-                    </h3>
-                    <p class="producto-marca" th:if="${producto.marca != null}" th:text="${producto.marca}"></p>
-                    <p class="producto-desc" th:text="${#strings.abbreviate(producto.descripcion, 200)}"></p>
-                    <div class="producto-precios">
-                        <span class="precio-tachado" th:if="${producto.descuento > 0}" th:text="${#numbers.formatDecimal(producto.precio, 1, 2)} + ' €'"></span>
-                        <span class="precio-final" th:if="${producto.descuento > 0}" th:text="${#numbers.formatDecimal(producto.precio - (producto.precio * producto.descuento / 100.0), 1, 2)} + ' €'"></span>
-                        <span class="precio-final" th:unless="${producto.descuento > 0}" th:text="${#numbers.formatDecimal(producto.precio, 1, 2)} + ' €'"></span>
-                    </div>
-                </div>
-            </article>
+            <div th:replace="~{productos :: listadoProductos}"></div>
         </div>
     </section>
 </main>
-
 <footer th:replace="layouts/base :: pie"></footer>
-
 </body>
 </html>

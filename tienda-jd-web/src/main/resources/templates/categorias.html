@@ -1,12 +1,8 @@
 <!doctype html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-
 <head th:replace="layouts/base :: head('Inicio')"></head>
-
 <body>
-
 <header th:replace="layouts/base :: cabecera"></header>
-
 <main>
     <section class="categorias-hero" aria-label="Categorías de productos">
         <a th:each="categoria : ${listaCategorias}"
@@ -22,8 +18,6 @@
         </a>
     </section>
 </main>
-
 <footer th:replace="layouts/base :: pie"></footer>
-
 </body>
 </html>
