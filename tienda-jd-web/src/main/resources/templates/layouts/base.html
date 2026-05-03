@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(titulo)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${titulo} + ' - Groove & Lens'">Groove & Lens</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body>
+<header th:fragment="cabecera">
+    <nav class="navbar" aria-label="Navegación principal">
+        <div class="navbar-left">
+            <a th:href="@{/categorias}" class="navbar-logo">Groove & Lens</a>
+        </div>
+        <div class="navbar-menu">
+            <a th:href="@{/categorias}">Inicio</a>
+            <a th:href="@{/productos}">Catálogo</a>
+            <a th:href="@{/sobre-nosotros.html}">Nuestra Historia</a>
+        </div>
+        <div class="navbar-right">
+            <a href="#">Iniciar Sesión</a>
+            <span class="user-icon" aria-hidden="true">👤</span>
+        </div>
+    </nav>
+</header>
+
+<footer class="footer-genshin" th:fragment="pie">
+    <nav class="footer-links" aria-label="Enlaces legales y de contacto">
+        <a th:href="@{/sobre-nosotros.html}">Sobre Nosotros</a>
+        <a th:href="@{/terms}">Términos de Servicio</a>
+        <a href="#">Contáctanos</a>
+        <a href="#">Política de Privacidad</a>
+    </nav>
+    <div class="footer-legal">
+        <p>"Groove & Lens" es un proyecto de pasión musical.</p>
+        <p>Copyright © 2026 José David. All Rights Reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

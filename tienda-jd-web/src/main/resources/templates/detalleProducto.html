@@ -1,39 +1,17 @@
 <!doctype html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title th:text="${producto.nombre} + ' - Groove & Lens'">Detalle del Producto</title>
-    <link rel="stylesheet" th:href="@{/css/styles.css}">
-</head>
+
+<head th:replace="layouts/base :: head(${producto.nombre})"></head>
+
 <body>
 
-<!-- CABECERA -->
-<header>
-    <nav class="navbar" aria-label="Navegación principal">
-        <div class="navbar-left">
-            <a th:href="@{/categorias}" class="navbar-logo">Groove & Lens</a>
-        </div>
-        <div class="navbar-menu">
-            <a th:href="@{/categorias}">Inicio</a>
-            <a th:href="@{/productos}">Catálogo</a>
-            <a th:href="@{/sobre-nosotros.html}">Nuestra Historia</a>
-        </div>
-        <div class="navbar-right">
-            <a href="#">Iniciar Sesión</a>
-            <span class="user-icon" aria-hidden="true">👤</span>
-        </div>
-    </nav>
-</header>
+<header th:replace="layouts/base :: cabecera"></header>
 
 <main style="flex: 1; padding: 40px 20px; display: flex; justify-content: center; align-items: center;">
 
-    <!-- CONTENEDOR DEL PRODUCTO INDIVIDUAL -->
     <section class="producto-single-container" aria-label="Detalles del producto">
 
-        <!-- Columna Izquierda: Imagen -->
         <div class="producto-single-img">
-            <!-- Globo de descuento -->
             <div class="badge-descuento-single" th:if="${producto.descuento > 0}" th:text="'-' + ${producto.descuento} + '%'"></div>
 
             <img th:if="${producto.imagen != null}"
@@ -45,7 +23,6 @@
                  alt="Imagen no disponible">
         </div>
 
-        <!-- Columna Derecha: Información -->
         <div class="producto-single-info">
             <h1 th:text="${producto.nombre}"></h1>
 
@@ -67,7 +44,6 @@
 
             <div class="producto-single-desc">
                 <h3>Descripción del producto</h3>
-                <!-- Aquí NO truncamos la descripción -->
                 <p th:text="${producto.descripcion}"></p>
             </div>
 
@@ -78,19 +54,7 @@
 
 </main>
 
-<!-- PIE DE PÁGINA -->
-<footer class="footer-genshin">
-    <nav class="footer-links" aria-label="Enlaces legales y de contacto">
-        <a th:href="@{/sobre-nosotros.html}">Sobre Nosotros</a>
-        <a th:href="@{/terms}">Términos de Servicio</a>
-        <a href="#">Contáctanos</a>
-        <a href="#">Política de Privacidad</a>
-    </nav>
-    <div class="footer-legal">
-        <p>"Groove & Lens" es un proyecto de pasión musical.</p>
-        <p>Copyright © 2026 José David. All Rights Reserved.</p>
-    </div>
-</footer>
+<footer th:replace="layouts/base :: pie"></footer>
 
 </body>
 </html>

@@ -1,40 +1,19 @@
 <!doctype html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Catálogo Completo - Groove & Lens</title>
-    <link rel="stylesheet" th:href="@{/css/styles.css}">
-</head>
+
+<head th:replace="layouts/base :: head('Catálogo Completo')"></head>
+
 <body>
 
-<!-- CABECERA -->
-<header>
-    <nav class="navbar" aria-label="Navegación principal">
-        <div class="navbar-left">
-            <a th:href="@{/categorias}" class="navbar-logo">Groove & Lens</a>
-        </div>
-        <div class="navbar-menu">
-            <a th:href="@{/categorias}">Inicio</a>
-            <a th:href="@{/productos}">Catálogo</a>
-            <a th:href="@{/sobre-nosotros.html}">Nuestra Historia</a>
-        </div>
-        <div class="navbar-right">
-            <a href="#">Iniciar Sesión</a>
-            <span class="user-icon" aria-hidden="true">👤</span>
-        </div>
-    </nav>
-</header>
+<header th:replace="layouts/base :: cabecera"></header>
 
 <main>
-    <!-- BANNER DEL CATÁLOGO -->
     <section class="categoria-banner" aria-label="Catálogo completo"
              style="padding: 60px 20px 40px 20px;">
         <h1>Catálogo Completo</h1>
         <p>Explora toda nuestra colección de vinilos, reproductores de alta fidelidad y accesorios para el cuidado de tu música.</p>
     </section>
 
-    <!-- LISTADO DE TODOS LOS PRODUCTOS -->
     <section class="productos-contenedor" aria-label="Todos los productos">
 
         <div th:if="${#lists.isEmpty(listaProductos)}" class="empty-state">
@@ -43,13 +22,10 @@
 
         <div th:unless="${#lists.isEmpty(listaProductos)}" class="productos-grid">
 
-            <!-- TARJETA DE PRODUCTO -->
             <article class="producto-card" th:each="producto : ${listaProductos}">
 
-                <!-- Globo de descuento -->
                 <div class="badge-descuento" th:if="${producto.descuento > 0}" th:text="'-' + ${producto.descuento} + '%'"></div>
 
-                <!-- Imagen del producto (con Alt obligatorio) -->
                 <div class="producto-img-container">
                     <img th:if="${producto.imagen != null}"
                          th:src="@{/imagenes/{img}(img=${producto.imagen})}"
@@ -61,19 +37,15 @@
                 </div>
 
                 <div class="producto-info">
-                    <!-- Nombre con enlace SEO Friendly -->
                     <h3>
                         <a th:href="@{/productos/{id}/{nombre}(id=${producto.id}, nombre=${#strings.replace(producto.nombre, ' ', '-')})}"
                            th:text="${producto.nombre}"></a>
                     </h3>
 
-                    <!-- Marca -->
                     <p class="producto-marca" th:if="${producto.marca != null}" th:text="${producto.marca}"></p>
 
-                    <!-- Descripción truncada a 200 caracteres -->
                     <p class="producto-desc" th:text="${#strings.abbreviate(producto.descripcion, 200)}"></p>
 
-                    <!-- Precios (Tachado y Final) -->
                     <div class="producto-precios">
                         <span class="precio-tachado" th:if="${producto.descuento > 0}" th:text="${#numbers.formatDecimal(producto.precio, 1, 2)} + ' €'"></span>
 
@@ -88,19 +60,7 @@
     </section>
 </main>
 
-<!-- PIE DE PÁGINA -->
-<footer class="footer-genshin">
-    <nav class="footer-links" aria-label="Enlaces legales y de contacto">
-        <a th:href="@{/sobre-nosotros.html}">Sobre Nosotros</a>
-        <a th:href="@{/terms}">Términos de Servicio</a>
-        <a href="#">Contáctanos</a>
-        <a href="#">Política de Privacidad</a>
-    </nav>
-    <div class="footer-legal">
-        <p>"Groove & Lens" es un proyecto de pasión musical.</p>
-        <p>Copyright © 2026 José David. All Rights Reserved.</p>
-    </div>
-</footer>
+<footer th:replace="layouts/base :: pie"></footer>
 
 </body>
 </html>
