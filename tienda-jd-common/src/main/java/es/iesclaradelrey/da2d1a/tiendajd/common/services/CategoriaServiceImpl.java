@@ -9,24 +9,30 @@ import java.util.Optional;
 
 @Service
 public class CategoriaServiceImpl implements CategoriaService {
-    private CategoriaRepository categoriaRepository;
+
+    private final CategoriaRepository categoriaRepository;
 
     public CategoriaServiceImpl(CategoriaRepository categoriaRepository) {
         this.categoriaRepository = categoriaRepository;
     }
 
     @Override
-    public List<Categoria> findAll(){
-        return (List<Categoria>) categoriaRepository.findAll();
+    public List<Categoria> findAll() {
+        return categoriaRepository.findAll();
     }
 
     @Override
-    public Optional<Categoria> findById(Long id){
+    public Optional<Categoria> findById(Long id) {
         return categoriaRepository.findById(id);
     }
 
     @Override
     public Categoria save(Categoria categoria) {
         return categoriaRepository.save(categoria);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        categoriaRepository.deleteById(id);
     }
 }

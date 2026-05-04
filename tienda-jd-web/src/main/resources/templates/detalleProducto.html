@@ -26,8 +26,26 @@
         <div class="producto-single-info">
             <h1 th:text="${producto.nombre}"></h1>
 
-            <p class="producto-single-marca" th:if="${producto.marca != null}" th:text="'Marca: ' + ${producto.marca}"></p>
+            <p class="producto-single-marca" th:if="${producto.marca != null}">
+                Marca: <a th:href="@{/marcas/{id}(id=${producto.marca.id})}" th:text="${producto.marca.nombre}"></a>
+            </p>
+
             <p class="producto-single-ean" th:text="'EAN: ' + ${producto.codigo}"></p>
+
+            <div class="producto-single-categorias" th:if="${not #lists.isEmpty(producto.categorias)}" style="margin-bottom: 15px;">
+                <p th:if="${#lists.size(producto.categorias) == 1}">
+                    Categoría: <a th:href="@{/categorias/{id}(id=${producto.categorias[0].id})}" th:text="${producto.categorias[0].nombre}"></a>
+                </p>
+
+                <div th:if="${#lists.size(producto.categorias) > 1}">
+                    <p style="margin-bottom: 5px;">Categorías:</p>
+                    <ul style="margin-top: 0; padding-left: 20px;">
+                        <li th:each="cat : ${producto.categorias}">
+                            <a th:href="@{/categorias/{id}(id=${cat.id})}" th:text="${cat.nombre}"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
             <div class="producto-single-precios">
                 <span class="precio-tachado" th:if="${producto.descuento > 0}" th:text="${#numbers.formatDecimal(producto.precio, 1, 2)} + ' €'"></span>

@@ -42,7 +42,24 @@
                            th:text="${producto.nombre}"></a>
                     </h3>
 
-                    <p class="producto-marca" th:if="${producto.marca != null}" th:text="${producto.marca}"></p>
+                    <p class="producto-marca" th:if="${producto.marca != null}">
+                        <a th:href="@{/marcas/{id}(id=${producto.marca.id})}" th:text="${producto.marca.nombre}"></a>
+                    </p>
+
+                    <div class="producto-categorias" th:if="${not #lists.isEmpty(producto.categorias)}">
+                        <p th:if="${#lists.size(producto.categorias) == 1}">
+                            Categoría: <a th:href="@{/categorias/{id}(id=${producto.categorias[0].id})}" th:text="${producto.categorias[0].nombre}"></a>
+                        </p>
+
+                        <div th:if="${#lists.size(producto.categorias) > 1}">
+                            <span>Categorías:</span>
+                            <ul style="list-style-type: none; padding-left: 0; margin-top: 5px;">
+                                <li th:each="cat : ${producto.categorias}" style="display: inline-block; margin-right: 10px;">
+                                    <a th:href="@{/categorias/{id}(id=${cat.id})}" th:text="${cat.nombre}"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
 
                     <p class="producto-desc" th:text="${#strings.abbreviate(producto.descripcion, 200)}"></p>
 

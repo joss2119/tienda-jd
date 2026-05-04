@@ -30,4 +30,9 @@ public class ProductoServiceImpl implements ProductoService {
     public Producto save(Producto producto) {
         return productoRepository.save(producto);
     }
+
+    @Override
+    public void deleteById(Long id) {
+        productoRepository.deleteById(id);
+    }
 }
