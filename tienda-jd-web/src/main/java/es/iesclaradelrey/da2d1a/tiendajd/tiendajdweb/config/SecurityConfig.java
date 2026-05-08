@@ -24,13 +24,13 @@ public class SecurityConfig {
                 .formLogin(form -> form
                         .permitAll()
                 )
-                .httpBasic(basic -> basic.disable())
-                .csrf(csrf -> csrf
-                        .ignoringRequestMatchers("/h2-console/**")
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/categorias") // <--- Al cerrar sesión te devuelve a la tienda
+                        .permitAll()
                 )
-                .headers(headers -> headers
-                        .frameOptions(frame -> frame.sameOrigin())
-                );
+                .csrf(csrf -> csrf.ignoringRequestMatchers("/h2-console/**"))
+                .headers(headers -> headers.frameOptions(frameOptions -> frameOptions.disable()));
 
         return http.build();
     }
