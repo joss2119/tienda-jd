@@ -134,3 +134,13 @@ INSERT INTO producto_categoria (producto_id, categoria_id) VALUES (19, 4);
 -- La contraseña es 'Password' cifrada con Bcrypt y 12 rondas (cost factor 12)
 INSERT INTO usuarios (username, password, nombre, email, fecha_registro)
 VALUES ('admin', '$2a$12$PPPJNu4xfuBQkWL1nhhkiu3DT.g67yTU5xmyfyTVz8G9QlV/Xa66a', 'Administrador Principal', 'admin@tienda.com', CURRENT_TIMESTAMP);
+
+-- ---------------------------------------------------------
+-- 6. ROLES (Nuevos para Actividad 10)
+-- ---------------------------------------------------------
+INSERT INTO roles (nombre) VALUES ('ROLE_USER');  -- ID 1
+INSERT INTO roles (nombre) VALUES ('ROLE_ADMIN'); -- ID 2
+
+INSERT INTO usuarios_roles (usuario_id, rol_id)
+SELECT u.id, r.id FROM usuarios u, roles r
+WHERE u.username = 'admin' AND r.nombre = 'ROLE_ADMIN';

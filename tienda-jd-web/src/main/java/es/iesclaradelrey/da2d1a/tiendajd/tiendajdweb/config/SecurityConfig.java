@@ -17,7 +17,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/h2-console/**").authenticated()
-                        .requestMatchers("/admin/**").authenticated()
+                        .requestMatchers("/admin", "/admin/", "/admin/**").hasAuthority("ROLE_ADMIN")
                         .requestMatchers("/register").permitAll()
                         .anyRequest().permitAll()
                 )
@@ -26,7 +26,7 @@ public class SecurityConfig {
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")
-                        .logoutSuccessUrl("/categorias") // <--- Al cerrar sesión te devuelve a la tienda
+                        .logoutSuccessUrl("/categorias")
                         .permitAll()
                 )
                 .csrf(csrf -> csrf.ignoringRequestMatchers("/h2-console/**"))

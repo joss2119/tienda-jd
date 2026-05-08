@@ -3,6 +3,8 @@ package es.iesclaradelrey.da2d1a.tiendajd.common.entities;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "usuarios")
@@ -32,6 +34,14 @@ public class CuentaUsuario {
 
     @Column(nullable = false, updatable = false)
     private LocalDateTime fechaRegistro; // Fecha y hora de registro
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "usuarios_roles",
+            joinColumns = @JoinColumn(name = "usuario_id"),
+            inverseJoinColumns = @JoinColumn(name = "rol_id")
+    )
+    private Set<Rol> roles = new HashSet<>();
 
     @PrePersist
     protected void onCreate() {
@@ -67,4 +77,7 @@ public class CuentaUsuario {
 
     public LocalDateTime getFechaRegistro() { return fechaRegistro; }
     public void setFechaRegistro(LocalDateTime fechaRegistro) { this.fechaRegistro = fechaRegistro; }
+
+    public Set<Rol> getRoles() { return roles; }
+    public void setRoles(Set<Rol> roles) { this.roles = roles; }
 }
