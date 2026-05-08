@@ -5,6 +5,8 @@
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tienda-jd-common/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tienda-jd-common/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tienda-jd-security/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tienda-jd-security/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tienda-jd-web/src/main/java" charset="UTF-8" />
   </component>
 </project>

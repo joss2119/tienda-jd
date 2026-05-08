@@ -11,6 +11,7 @@
     <modules>
         <module>tienda-jd-common</module>
         <module>tienda-jd-web</module>
+        <module>tienda-jd-security</module>
     </modules>
 
     <properties>
