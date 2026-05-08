@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${marca.id == null ? 'Nueva Marca' : 'Editar Marca'}"></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <div class="container">
+        <a class="navbar-brand" href="/admin"><i class="bi bi-gear-fill me-2"></i>Admin Tienda</a>
+    </div>
+</nav>
+
+<div class="container" style="max-width: 600px;">
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-white py-3">
+            <h1 class="h4 mb-0" th:text="${marca.id == null ? 'Crear Nueva Marca' : 'Editar Marca'}"></h1>
+        </div>
+        <div class="card-body">
+
+            <!-- El action cambia dinámicamente si estamos creando o editando -->
+            <form th:action="@{${marca.id == null ? '/admin/marcas/nueva' : '/admin/marcas/' + marca.id + '/edit'}}"
+                  method="post" th:object="${marca}">
+
+                <div class="mb-4">
+                    <label for="nombre" class="form-label fw-bold">Nombre de la Marca</label>
+                    <!-- Nota: Sin validación de cliente (required) según requisitos[cite: 2] -->
+                    <input type="text" class="form-control" id="nombre" th:field="*{nombre}" placeholder="Ej: Sony Music">
+                </div>
+
+                <div class="d-flex justify-content-end gap-2">
+                    <a th:href="@{/admin/marcas}" class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" class="btn btn-primary">Aceptar</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
