@@ -18,10 +18,10 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/h2-console/**").authenticated()
                         .requestMatchers("/admin/**").authenticated()
+                        .requestMatchers("/register").permitAll()
                         .anyRequest().permitAll()
                 )
                 .formLogin(form -> form
-                        // Usamos el login por defecto de momento [cite: 99]
                         .permitAll()
                 )
                 .httpBasic(basic -> basic.disable())
