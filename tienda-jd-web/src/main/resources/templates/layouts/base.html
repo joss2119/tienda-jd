@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="head(titulo)">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,15 +18,62 @@
             <a th:href="@{/productos}">Catálogo</a>
             <a th:href="@{/sobre-nosotros.html}">Nuestra Historia</a>
         </div>
-        <div class="navbar-right">
-            <a href="#">Iniciar Sesión</a>
-            <span class="user-icon" aria-hidden="true">👤</span>
+
+        <div class="navbar-right" style="display: flex; gap: 20px; align-items: center;">
+
+            <div sec:authorize="isAnonymous()" style="display: flex; gap: 15px; align-items: center;">
+                <a th:href="@{/login}" class="nav-link">Iniciar Sesión</a>
+                <a th:href="@{/usuarios/registro}" class="nav-link">Registrarse</a>
+                <span class="user-icon" aria-hidden="true">👤</span>
+            </div>
+
+            <div sec:authorize="isAuthenticated()" style="display: flex; gap: 15px; align-items: center;">
+                <span style="color: #e0e0e0; font-size: 0.9rem;">
+                    Hola, <span style="color: #d4af37; font-weight: bold;" sec:authentication="name"></span>
+                </span>
+
+                <span class="user-icon" aria-hidden="true">👤</span>
+
+                <form th:action="@{/logout}" method="post" style="margin: 0; display: inline;">
+                    <button type="submit" class="btn-logout-custom">
+                        Cerrar Sesión
+                    </button>
+                </form>
+            </div>
+
         </div>
     </nav>
+
+    <style>
+        .nav-link {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .nav-link:hover {
+            color: #d4af37;
+        }
+        .btn-logout-custom {
+            background: #d4af37;
+            color: black;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: inherit;
+            font-size: 0.8rem;
+            transition: 0.3s;
+        }
+        .btn-logout-custom:hover {
+            background: #f1c40f;
+            transform: scale(1.05);
+        }
+    </style>
 </header>
 
 <footer class="footer-genshin" th:fragment="pie">
-    <nav class="footer-links" aria-label="Enlaces legales y de contacto">
+    <nav class="footer-links" aria-label="Enlaces legal y de contacto">
         <a th:href="@{/sobre-nosotros.html}">Sobre Nosotros</a>
         <a th:href="@{/terms}">Términos de Servicio</a>
         <a href="#">Contáctanos</a>
