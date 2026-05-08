@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>tienda-jd-common</artifactId>
+    <artifactId>tienda-jd-security</artifactId>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
@@ -19,24 +19,15 @@
 
     <dependencies>
         <dependency>
+            <groupId>es.iesclaradelrey.da2d1a.tienda-jd</groupId>
+            <artifactId>tienda-jd-common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <artifactId>spring-boot-starter-security</artifactId>
             <version>3.2.5</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>6.1.14</version> </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-aop</artifactId>
-            <version>6.1.14</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-crypto</artifactId>
-            <version>7.0.4</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 

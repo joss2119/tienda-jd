@@ -127,4 +127,10 @@ INSERT INTO producto_categoria (producto_id, categoria_id) VALUES (17, 4);
 INSERT INTO producto_categoria (producto_id, categoria_id) VALUES (18, 4);
 INSERT INTO producto_categoria (producto_id, categoria_id) VALUES (19, 4);
 
--- IMPORTANTE: El Producto 20 (Caja Flight Case) NO se inserta en ninguna categoría -> Cumple: Productos en ninguna categoría[cite: 3].
+
+-- ---------------------------------------------------------
+-- 5. USUARIOS (Creación del usuario administrador inicial)
+-- ---------------------------------------------------------
+-- La contraseña es 'Password' cifrada con Bcrypt y 12 rondas (cost factor 12)
+INSERT INTO usuarios (username, password, nombre, email, fecha_registro)
+VALUES ('admin', '$2a$12$PPPJNu4xfuBQkWL1nhhkiu3DT.g67yTU5xmyfyTVz8G9QlV/Xa66a', 'Administrador Principal', 'admin@tienda.com', CURRENT_TIMESTAMP);
