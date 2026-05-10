@@ -1,5 +1,5 @@
 -- ---------------------------------------------------------
--- 1. MARCAS (Nueva entidad obligatoria)[cite: 3]
+-- 1. MARCAS (Nueva entidad obligatoria)
 -- ---------------------------------------------------------
 INSERT INTO marcas (nombre) VALUES ('Sony Music');       -- ID 1
 INSERT INTO marcas (nombre) VALUES ('Columbia Records'); -- ID 2
@@ -14,7 +14,7 @@ INSERT INTO marcas (nombre) VALUES ('Ortofon');          -- ID 10
 INSERT INTO marcas (nombre) VALUES ('Pro-Ject');         -- ID 11
 INSERT INTO marcas (nombre) VALUES ('Kallax Design');    -- ID 12
 INSERT INTO marcas (nombre) VALUES ('Genérica');         -- ID 13 (Para los productos que no tenían marca)
-INSERT INTO marcas (nombre) VALUES ('Marca Fantasma');   -- ID 14 (Cumple: Marca sin productos)[cite: 3]
+INSERT INTO marcas (nombre) VALUES ('Marca Fantasma');   -- ID 14 (Cumple: Marca sin productos)
 
 -- ---------------------------------------------------------
 -- 2. CATEGORÍAS
@@ -23,11 +23,11 @@ INSERT INTO categorias (nombre, descripcion, minimo, imagen) VALUES ('Vinilos', 
 INSERT INTO categorias (nombre, descripcion, minimo, imagen) VALUES ('Reproductores', 'Tocadiscos, amplificadores y equipos de sonido de alta fidelidad.', 0, 'categorias/tocadiscos.webp'); -- ID 2
 INSERT INTO categorias (nombre, descripcion, minimo, imagen) VALUES ('Mantenimiento', 'Kits de limpieza, cepillos antiestáticos y líquidos para el cuidado de tus discos.', 0, 'categorias/mantenimiento.jpg'); -- ID 3
 INSERT INTO categorias (nombre, descripcion, minimo, imagen) VALUES ('Accesorios', 'Fundas interiores, carcasas personalizadas y agujas de repuesto.', 0, 'categorias/accesorios.webp'); -- ID 4
-INSERT INTO categorias (nombre, descripcion, minimo, imagen) VALUES ('Merchandising', 'Camisetas y tazas (Próximamente)', 0, 'categorias/Imagen_Generica.webp'); -- ID 5 (Cumple: Categorías sin productos)[cite: 3]
-INSERT INTO categorias (nombre, descripcion, minimo, imagen) VALUES ('Ediciones de Coleccionista', 'Joyas raras y caras', 0, 'categorias/Imagen_Generica.webp'); -- ID 6 (Cumple: Categorías con un solo producto)[cite: 3]
+INSERT INTO categorias (nombre, descripcion, minimo, imagen) VALUES ('Merchandising', 'Camisetas y tazas (Próximamente)', 0, 'categorias/Imagen_Generica.webp'); -- ID 5 (Cumple: Categorías sin productos)
+INSERT INTO categorias (nombre, descripcion, minimo, imagen) VALUES ('Ediciones de Coleccionista', 'Joyas raras y caras', 0, 'categorias/Imagen_Generica.webp'); -- ID 6 (Cumple: Categorías con un solo producto)
 
 -- ---------------------------------------------------------
--- 3. PRODUCTOS (Con 'marca_id' y sin 'categoria_id')[cite: 3]
+-- 3. PRODUCTOS (Con 'marca_id' y sin 'categoria_id')
 -- ---------------------------------------------------------
 -- VINILOS
 INSERT INTO productos (codigo, nombre, descripcion, precio, descuento, stock, imagen, marca_id)
@@ -94,10 +94,10 @@ INSERT INTO productos (codigo, nombre, descripcion, precio, descuento, stock, im
 VALUES ('8411122233320', 'Caja de Almacenamiento Estilo Flight Case', 'Maleta de transporte robusta con esquinas reforzadas... Capacidad 50 vinilos.', 65.00, 0, 5, 'flight_case_vinilos.jpg', 13);
 
 -- ---------------------------------------------------------
--- 4. RELACIÓN PRODUCTOS-CATEGORÍAS (Tabla N:M)[cite: 3]
+-- 4. RELACIÓN PRODUCTOS-CATEGORÍAS (Tabla N:M)
 -- ---------------------------------------------------------
 
--- Producto 1 (Pink Floyd) está en Vinilos (1) y Coleccionista (6) -> Cumple: Productos en varias categorías y Categoría con un solo producto[cite: 3]
+-- Producto 1 (Pink Floyd) está en Vinilos (1) y Coleccionista (6)
 INSERT INTO producto_categoria (producto_id, categoria_id) VALUES (1, 1);
 INSERT INTO producto_categoria (producto_id, categoria_id) VALUES (1, 6);
 
@@ -129,18 +129,28 @@ INSERT INTO producto_categoria (producto_id, categoria_id) VALUES (19, 4);
 
 
 -- ---------------------------------------------------------
--- 5. USUARIOS (Creación del usuario administrador inicial)
+-- 5. USUARIOS (Admin y User normal)
 -- ---------------------------------------------------------
--- La contraseña es 'Password' cifrada con Bcrypt y 12 rondas (cost factor 12)
+-- Admin (ID 1)
 INSERT INTO usuarios (username, password, nombre, email, fecha_registro)
 VALUES ('admin', '$2a$12$PPPJNu4xfuBQkWL1nhhkiu3DT.g67yTU5xmyfyTVz8G9QlV/Xa66a', 'Administrador Principal', 'admin@tienda.com', CURRENT_TIMESTAMP);
 
--- ---------------------------------------------------------
--- 6. ROLES (Nuevos para Actividad 10)
--- ---------------------------------------------------------
-INSERT INTO roles (nombre) VALUES ('ROLE_USER');  -- ID 1
-INSERT INTO roles (nombre) VALUES ('ROLE_ADMIN'); -- ID 2
+-- Usuario Normal (ID 2)
+INSERT INTO usuarios (username, password, nombre, email, fecha_registro)
+VALUES ('user', '$2a$12$PPPJNu4xfuBQkWL1nhhkiu3DT.g67yTU5xmyfyTVz8G9QlV/Xa66a', 'Usuario Cliente', 'user@tienda.com', CURRENT_TIMESTAMP);
 
-INSERT INTO usuarios_roles (usuario_id, rol_id)
-SELECT u.id, r.id FROM usuarios u, roles r
-WHERE u.username = 'admin' AND r.nombre = 'ROLE_ADMIN';
+-- ---------------------------------------------------------
+-- 6. ROLES (Adaptado a ID String max 6 char)
+-- ---------------------------------------------------------
+INSERT INTO roles (id, descripcion) VALUES ('USER', 'Usuario normal de la tienda');
+INSERT INTO roles (id, descripcion) VALUES ('ADMIN', 'Administrador del sistema');
+
+-- ---------------------------------------------------------
+-- 7. ASIGNACIÓN DE ROLES A USUARIOS
+-- ---------------------------------------------------------
+-- El admin tiene los DOS roles
+INSERT INTO usuarios_roles (usuario_id, rol_id) VALUES (1, 'ADMIN');
+INSERT INTO usuarios_roles (usuario_id, rol_id) VALUES (1, 'USER');
+
+-- El usuario normal SOLO tiene el rol USER
+INSERT INTO usuarios_roles (usuario_id, rol_id) VALUES (2, 'USER');

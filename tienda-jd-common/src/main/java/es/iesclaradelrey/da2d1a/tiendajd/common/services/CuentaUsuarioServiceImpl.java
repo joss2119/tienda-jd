@@ -7,6 +7,7 @@ import es.iesclaradelrey.da2d1a.tiendajd.common.repositories.CuentaUsuarioReposi
 import es.iesclaradelrey.da2d1a.tiendajd.common.repositories.RolRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import java.util.Optional;
 
 @Service
 public class CuentaUsuarioServiceImpl implements CuentaUsuarioService {
@@ -35,11 +36,21 @@ public class CuentaUsuarioServiceImpl implements CuentaUsuarioService {
         nuevoUsuario.setFechaNacimiento(dto.getFechaNacimiento());
         nuevoUsuario.setPassword(passwordEncoder.encode(dto.getPassword()));
 
-        // Asignar rol por defecto
-        Rol rolUser = rolRepository.findByNombre("ROLE_USER")
-                .orElseThrow(() -> new RuntimeException("Error: Rol no encontrado en base de datos."));
+        Rol rolUser = rolRepository.findById("ROLE_USER")
+                .orElseThrow(() -> new RuntimeException("Error: El rol 'ROLE_USER' no existe en la base de datos."));
+
         nuevoUsuario.getRoles().add(rolUser);
 
         return cuentaUsuarioRepository.save(nuevoUsuario);
+    }
+
+    @Override
+    public Optional<CuentaUsuario> findByUsername(String username) {
+        return cuentaUsuarioRepository.findByUsername(username);
+    }
+
+    @Override
+    public Optional<CuentaUsuario> findById(Long id) {
+        return cuentaUsuarioRepository.findById(id);
     }
 }

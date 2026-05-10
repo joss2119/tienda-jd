@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Perfil de Usuario</title>
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1>Perfil de Usuario</h1>
+    <hr>
+
+    <div th:if="${usuario}" class="card">
+        <div class="card-body">
+            <h5 class="card-title" th:text="${usuario.nombre}">Nombre Completo</h5>
+            <p class="card-text">
+                <strong>Nombre de usuario:</strong> <span th:text="${usuario.username}">username</span><br>
+                <strong>Email:</strong> <span th:text="${usuario.email}">email@ejemplo.com</span><br>
+                <strong>Teléfono:</strong> <span th:text="${usuario.telefono != null ? usuario.telefono : 'No especificado'}">Teléfono</span><br>
+                <strong>Fecha de Registro:</strong> <span th:text="${#temporals.format(usuario.fechaRegistro, 'dd-MM-yyyy HH:mm')}">Fecha</span>
+            </p>
+
+            <h5>Roles asignados:</h5>
+            <ul>
+                <li th:each="rol : ${usuario.roles}" th:text="${rol.descripcion}">Rol</li>
+            </ul>
+        </div>
+    </div>
+
+    <a th:href="@{/}" class="btn btn-primary mt-3">Volver a la tienda</a>
+</div>
+
+</body>
+</html>

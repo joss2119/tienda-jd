@@ -32,6 +32,8 @@
                     Hola, <span style="color: #d4af37; font-weight: bold;" sec:authentication="name"></span>
                 </span>
 
+                <a th:href="@{/users/profile}" class="nav-link">Mi Perfil</a>
+
                 <span class="user-icon" aria-hidden="true">👤</span>
 
                 <form th:action="@{/logout}" method="post" style="margin: 0; display: inline;">

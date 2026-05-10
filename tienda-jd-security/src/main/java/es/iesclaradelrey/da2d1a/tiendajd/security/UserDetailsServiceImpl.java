@@ -28,15 +28,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado: " + username));
 
         List<GrantedAuthority> authorities = usuario.getRoles().stream()
-                .map(rol -> new SimpleGrantedAuthority(rol.getNombre()))
+                .map(rol -> new SimpleGrantedAuthority("ROLE_" + rol.getId()))
                 .collect(Collectors.toList());
 
         System.out.println("Cargando usuario: " + username + " con roles: " + authorities);
 
-        return new User(
-                usuario.getUsername(),
-                usuario.getPassword(),
-                authorities
-        );
+        return new User(usuario.getUsername(), usuario.getPassword(), authorities);
     }
 }
