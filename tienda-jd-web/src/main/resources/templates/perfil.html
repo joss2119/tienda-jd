@@ -1,34 +1,51 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Perfil de Usuario</title>
-</head>
+<head th:replace="~{layouts/base :: head('Mi Perfil')}"></head>
 <body>
 
-<div class="container mt-5">
-    <h1>Perfil de Usuario</h1>
-    <hr>
+<header th:replace="~{layouts/base :: cabecera}"></header>
 
-    <div th:if="${usuario}" class="card">
-        <div class="card-body">
-            <h5 class="card-title" th:text="${usuario.nombre}">Nombre Completo</h5>
-            <p class="card-text">
-                <strong>Nombre de usuario:</strong> <span th:text="${usuario.username}">username</span><br>
-                <strong>Email:</strong> <span th:text="${usuario.email}">email@ejemplo.com</span><br>
-                <strong>Teléfono:</strong> <span th:text="${usuario.telefono != null ? usuario.telefono : 'No especificado'}">Teléfono</span><br>
-                <strong>Fecha de Registro:</strong> <span th:text="${#temporals.format(usuario.fechaRegistro, 'dd-MM-yyyy HH:mm')}">Fecha</span>
+<main>
+    <div class="form-container">
+        <h2>Tu Perfil</h2>
+
+        <div class="perfil-info" th:if="${usuario}">
+            <p>
+                <strong>Nombre Completo:</strong>
+                <span th:text="${usuario.nombre}"></span>
+            </p>
+            <p>
+                <strong>Nombre de Usuario:</strong>
+                <span th:text="${usuario.username}"></span>
+            </p>
+            <p>
+                <strong>Correo Electrónico:</strong>
+                <span th:text="${usuario.email}"></span>
+            </p>
+            <p>
+                <strong>Teléfono:</strong>
+                <span th:text="${usuario.telefono != null ? usuario.telefono : 'No especificado'}"></span>
+            </p>
+            <p>
+                <strong>Fecha de Registro:</strong>
+                <span th:text="${#temporals.format(usuario.fechaRegistro, 'dd/MM/yyyy HH:mm')}"></span>
             </p>
 
-            <h5>Roles asignados:</h5>
-            <ul>
-                <li th:each="rol : ${usuario.roles}" th:text="${rol.descripcion}">Rol</li>
-            </ul>
+            <div style="margin-top: 25px;">
+                <strong style="color: #d4af37; display: block; margin-bottom: 10px;">Roles de Acceso:</strong>
+                <div>
+                    <span class="rol-badge" th:each="rol : ${usuario.roles}" th:text="${rol.descripcion}"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-footer" style="margin-top: 40px;">
+            <a th:href="@{/categorias}">Volver al Inicio</a>
         </div>
     </div>
+</main>
 
-    <a th:href="@{/}" class="btn btn-primary mt-3">Volver a la tienda</a>
-</div>
+<footer th:replace="~{layouts/base :: pie}"></footer>
 
 </body>
 </html>

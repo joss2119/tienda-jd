@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layouts/base :: head('Iniciar Sesión')}"></head>
+<body>
+
+<header th:replace="~{layouts/base :: cabecera}"></header>
+
+<main>
+    <div class="form-container">
+        <h2>Iniciar Sesión</h2>
+
+        <div th:if="${param.error}" class="error-alert">
+            Usuario y/o contraseña incorrectos.
+        </div>
+
+        <div th:if="${param.logout}" class="error-alert" style="color: #4CAF50; border-color: #4CAF50; background-color: rgba(76, 175, 80, 0.1);">
+            Has cerrado sesión correctamente.
+        </div>
+
+        <form th:action="@{/login}" method="post">
+            <div class="form-group">
+                <label for="username">Usuario (Email):</label>
+                <input type="text" id="username" name="username" placeholder="ejemplo@tienda.com" required autofocus>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="password" placeholder="Tu contraseña" required>
+            </div>
+
+            <button type="submit" class="btn-submit">Entrar</button>
+        </form>
+
+        <div class="form-footer">
+            <p>¿No tienes una cuenta? <a th:href="@{/register}">Regístrate aquí</a></p>
+        </div>
+    </div>
+</main>
+
+<footer th:replace="~{layouts/base :: pie}"></footer>
+
+</body>
+</html>
