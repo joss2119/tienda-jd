@@ -1,0 +1,80 @@
+### =================================================================
+### PRUEBA 3.5.a: Acceso a Auth sin cabecera Authorization
+### El documento pide verificar que login y refresh son públicos[cite: 97].
+### =================================================================
+
+### 1. Intento de Login (Debe funcionar sin Token)
+POST http://localhost:8000/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "Password"
+}
+
+### 2. Intento de Refresh (Debe responder 400, no 403, indicando que la ruta es pública)
+POST http://localhost:8000/api/v1/auth/refresh
+Content-Type: application/json
+
+{
+  "refreshToken": "token.falso.no.valido"
+}
+
+
+### =================================================================
+### PRUEBA 3.5.b: Método Login - Credenciales [cite: 98, 99]
+### =================================================================
+
+### 1. Credenciales ERRÓNEAS (Debe devolver 401 Unauthorized)
+POST http://localhost:8000/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "Password_Incorrecto"
+}
+
+### 2. Credenciales CORRECTAS (Debe devolver Access y Refresh Token) [cite: 67, 99]
+POST http://localhost:8000/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "Password"
+}
+
+### NOTA: Copia el 'accessToken' para la prueba de productos
+### y el 'refreshToken' para la prueba de refresco.
+
+
+### =================================================================
+### PRUEBA 3.5.c: Método Refresh - Validación [cite: 101, 102, 103]
+### =================================================================
+
+### 1. Token de refresco INCORRECTO (Debe devolver 400 Bad Request) [cite: 71, 102]
+POST http://localhost:8000/api/v1/auth/refresh
+Content-Type: application/json
+
+{
+  "refreshToken": "un.token.inventado.malformado"
+}
+
+### 2. Token de refresco CORRECTO (Debe devolver un nuevo Access Token distinto) [cite: 70, 103]
+POST http://localhost:8000/api/v1/auth/refresh
+Content-Type: application/json
+
+{
+  "refreshToken": "PEGA_AQUI_TU_REFRESH_TOKEN_REAL"
+}
+
+
+### =================================================================
+### PRUEBA 3.5.d: Endpoints desprotegidos vs protegidos [cite: 105, 106, 107]
+### =================================================================
+
+### 1. Acceso SIN Token o incorrecto (Debe devolver 403 Forbidden)
+GET http://localhost:8000/api/v1/products
+
+### 2. Acceso CON Token válido (Debe devolver 200 OK y la lista) [cite: 107]
+GET http://localhost:8000/api/v1/products
+Authorization: Bearer PEGA_AQUI_TU_ACCESS_TOKEN_REAL
